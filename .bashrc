@@ -188,3 +188,4 @@ calc() {
     local in="$(echo " $*" | sed -e 's/\[/(/g' -e 's/\]/)/g')";
     gawk -M -v PREC=201 -M 'BEGIN {printf("%.60g\n",'"${in-0}"')}' < /dev/null
 }
+
