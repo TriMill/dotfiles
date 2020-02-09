@@ -118,8 +118,6 @@ alias lla='ls -la'
 alias ldir='ls -la | grep ^d'
 alias pacls='pacman -Qe | column -t'
 alias py='python'
-alias ldir='ls -la | grep ^d'
-alias pacls='pacman -Qe | column -t'
 alias rebash='source ~/.bashrc'
 alias datetime='date +"%Y-%m-%d %I:%M:%S %p"'
 
@@ -188,4 +186,3 @@ calc() {
     local in="$(echo " $*" | sed -e 's/\[/(/g' -e 's/\]/)/g')";
     gawk -M -v PREC=201 -M 'BEGIN {printf("%.60g\n",'"${in-0}"')}' < /dev/null
 }
-
