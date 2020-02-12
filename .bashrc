@@ -120,6 +120,7 @@ alias pacls='pacman -Qe | column -t'
 alias py='python'
 alias rebash='source ~/.bashrc'
 alias datetime='date +"%Y-%m-%d %I:%M:%S %p"'
+alias timestamp='date +"%Y-%m-%dT%H.%M.%S"'
 
 xhost +local:root > /dev/null 2>&1
 
