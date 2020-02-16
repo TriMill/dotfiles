@@ -1,0 +1,19 @@
+[Desktop Entry]
+DefaultProfile=Opaque.profile
+
+[Favorite Profiles]
+Favorites=Opaque.profile,Transparent.profile
+
+[MainWindow]
+Height 1080=686
+Height 720=689
+Height 800=769
+State=AAAA/wAAAAD9AAAAAAAAB4AAAAP7AAAABAAAAAQAAAAIAAAACPwAAAAA
+Width 1280=1280
+Width 1920=1275
+Window-Maximized 1080x1920=true
+Window-Maximized 240x320=true
+
+[Notification Messages]
+CloseAllEmptyTabs=true
+ShowPasteUnprintableWarning=true

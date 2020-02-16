@@ -1,0 +1,49 @@
+[CompactMode]
+FontWeight=50
+
+[DetailsMode]
+ExpandableFolders=false
+FontWeight=50
+PreviewSize=32
+
+[FileDialogSize]
+Height 1080=1049
+Width 1920=1920
+
+[General]
+Version=200
+ViewPropsTimestamp=2020,1,28,18,50,35
+
+[IconsMode]
+FontWeight=50
+
+[KFileDialog Settings]
+Recent Files[$e]=java,file:///bin/java,file:///usr/lib/jvm/java-8-openjdk/jre/bin/java
+Recent URLs[$e]=file:///bin/
+detailViewIconSize=0
+
+[KPropertiesDialog]
+Height 1080=542
+Width 1920=471
+
+[MainWindow]
+Height 1080=1049
+MenuBar=Disabled
+State=AAAA/wAAAAD9AAAAAwAAAAAAAAC4AAAD8/wCAAAAAvsAAAAWAGYAbwBsAGQAZQByAHMARABvAGMAawAAAAAA/////wAAAAoBAAAD+wAAABQAcABsAGEAYwBlAHMARABvAGMAawEAAAAmAAAD8wAAAFoBAAADAAAAAQAAAAAAAAAA/AIAAAAB+wAAABAAaQBuAGYAbwBEAG8AYwBrAAAAAAD/////AAAACgEAAAMAAAADAAAAAAAAAAD8AQAAAAH7AAAAGAB0AGUAcgBtAGkAbgBhAGwARABvAGMAawAAAAAA/////wAAAAoBAAADAAAGxwAAA/MAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAACAAAAAQAAABYAbQBhAGkAbgBUAG8AbwBsAEIAYQByAQAAAAD/////AAAAAAAAAAA=
+ToolBarsMovable=Disabled
+Width 1920=960
+Window-Maximized 1080x1920=true
+
+[Open-with settings]
+CompletionMode=1
+History=/bin/java,/usr/lib/jvm/java-8-openjdk/jre/bin/java
+
+[PreviewSettings]
+Plugins=windowsimagethumbnail,opendocumentthumbnail,svgthumbnail,kraorathumbnail,appimagethumbnail,rawthumbnail,audiothumbnail,blenderthumbnail,imagethumbnail,fontthumbnail,windowsexethumbnail,ffmpegthumbs,exrthumbnail,comicbookthumbnail,djvuthumbnail,gsthumbnail,ebookthumbnail,directorythumbnail,jpegthumbnail
+
+[Search]
+Location=Everywhere
+
+[SettingsDialog]
+Height 1080=462
+Width 1920=560
