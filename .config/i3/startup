@@ -1,0 +1,9 @@
+#!/bin/sh
+
+xrandr --dpi 196
+xss-lock --transfer-sleep-lock -- i3lock --nofork
+nm-applet
+picom -b
+feh --zoom --randomize --bg-fill ~/pictures/wallpaper/*
+i3-battery-popup -t 30s 
+

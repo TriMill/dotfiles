@@ -1,0 +1,18 @@
+separator_block_width=40
+markup=pango
+
+[memory]
+command=i3-memory
+interval=2
+
+[battery]
+command=i3-battery
+interval=10
+
+[date]
+command=date +"%Y-%m-%d"
+interval=1
+
+[time]
+command=date +"%I:%M %p "
+interval=1
