@@ -83,10 +83,12 @@ LatitudeAuto=42.4337
 LongitudeAuto=-71.4568
 Mode=Times
 MorningBeginFixed=0740
-NightTemperature=2800
+NightTemperature=2900
+TransitionTime=1
 
 [Plugins]
 contrastEnabled=true
+desktopchangeosdEnabled=true
 highlightwindowEnabled=true
 kwin4_effect_fadeEnabled=false
 kwin4_effect_fadingpopupsEnabled=false
@@ -100,6 +102,10 @@ synchronizeskipswitcherEnabled=false
 videowallEnabled=false
 windowgeometryEnabled=false
 zoomEnabled=false
+
+[Script-desktopchangeosd]
+PopupHideDelay=500
+TextOnly=true
 
 [TabBox]
 ActivitiesMode=0
@@ -160,6 +166,7 @@ MaximizeButtonMiddleClickCommand=Maximize (vertical only)
 MaximizeButtonRightClickCommand=Maximize (horizontal only)
 NextFocusPrefersMouse=false
 Placement=Smart
+RollOverDesktops=true
 SeparateScreenFocus=false
 ShadeHover=false
 ShadeHoverInterval=250
@@ -175,4 +182,4 @@ ButtonsOnRight=IAX
 CloseOnDoubleClickOnMenu=false
 ShowToolTips=true
 library=org.kde.breeze
-theme=Breeze
+theme=
