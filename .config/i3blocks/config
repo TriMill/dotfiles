@@ -5,6 +5,14 @@ markup=pango
 command=i3-memory
 interval=2
 
+[network]
+command=i3-network
+interval=10
+
+[cpu-temp]
+command=i3-cpu
+interval=2
+
 [battery]
 command=i3-battery
 interval=10

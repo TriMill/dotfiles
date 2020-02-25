@@ -14,18 +14,22 @@
 
 # Appearance settings
 set $mod Mod4
-font pango:monospace 10
+font pango:Icons pango:Inconsolata 10
 default_border pixel 2
+
+# Color scheme to use
 # class					border	bg		text	indic.	child_border
 client.focused			#7f8c8d	#191b1c	#ffffff	#1d99f3	#7f8c8d
-client.focused_inactive	#7f8c8d	#191b1c	#ffffff	#1d99f3	#7f8c8d
+client.focused_inactive	#191b1c	#191b1c	#ffffff	#191b1c	#191b1c
 client.unfocused		#191b1c	#191b1c	#ffffff	#191b1c	#191b1c
 client.urgent			#ed1515	#551b1c	#ffffff	#ed1515	#ed1515
 client.placeholder		#191b1c #191b1c #ffffff #191b1c #191b1c
 client.background		#191b1c	
 
 # Startup programs
-exec --no-startup-id "~/.config/i3/i3_startup"
+exec --no-startup-id "~/.config/i3/startup"
+exec --no-startup-id dunst
+exec --no-startup-id "feh --bg-scale --randomize ~/pictures/wallpaper/*"
 
 # Volume keys
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -46,15 +50,20 @@ bindsym $mod+Shift+m exec "redshift -x"
 #  Launch programs  #
 #####################
 
-bindsym $mod+d exec dmenu_run
-bindsym $mod+Shift+d exec dmenu_run_terminal
-
+# Shortcuts for common programs
 bindsym $mod+Return exec $TERMINAL
 bindsym $mod+w exec $BROWSER
 bindsym $mod+F1 exec $TERMINAL -e man i3
 bindsym $mod+r exec $TERMINAL -e $FILE
 bindsym $mod+p exec $TERMINAL -e htop
 
+# Dmenu tools
+bindsym $mod+d exec dmenu_run
+bindsym $mod+Shift+d exec dmenu_run_terminal
+bindsym $mod+F11 exec dmenu_umount
+bindsym $mod+F12 exec dmenu_mount
+
+# Start less common programs through special mode
 set $mode_start "Start:   [b] bleachbit | [c] chromium | [g] gimp | [m] multimc | [M] minecraft | [s] steam"
 mode $mode_start {
 	bindsym b exec --no-startup-id bleachbit, mode "default"	
@@ -104,6 +113,7 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+e layout toggle split
 bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
+bindsym $mod+Shift+a focus child
 
 # Window gaps
 gaps inner 15
@@ -187,6 +197,6 @@ bindsym $mod+Escape mode $mode_system
 ################
 
 bar {
-	font pango:monospace 10
+	font pango:Icons, Inconsolata 11
 	status_command i3blocks
 }
