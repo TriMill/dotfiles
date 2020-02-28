@@ -30,7 +30,7 @@ alias bin='cd ~/.local/bin'
 alias v-i3='vim ~/.config/i3/config'
 alias v-i3b='vim ~/.config/i3blocks/config'
 alias v-ba='vim ~/.bash_aliases'
-alias v-brc='vin ~/.bashrc'
+alias v-brc='vim ~/.bashrc'
 
 # pacman tools
 alias pacls='pacman -Qe | column -t'

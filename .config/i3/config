@@ -16,6 +16,7 @@
 set $mod Mod4
 font pango:Icons pango:Inconsolata 10
 default_border pixel 2
+default_floating_border pixel 2
 
 # Color scheme to use
 # class					border	bg		text	indic.	child_border
@@ -62,6 +63,7 @@ bindsym $mod+d exec dmenu_run
 bindsym $mod+Shift+d exec dmenu_run_terminal
 bindsym $mod+F11 exec dmenu_umount
 bindsym $mod+F12 exec dmenu_mount
+bindsym $mod+u exec dmenu_unicode
 
 # Start less common programs through special mode
 set $mode_start "Start:   [b] bleachbit | [c] chromium | [g] gimp | [m] multimc | [M] minecraft | [s] steam"
@@ -78,12 +80,32 @@ mode $mode_start {
 }
 bindsym $mod+s mode $mode_start
 
+######################
+#  Dropdown windows  #
+######################
+
+# Start up dropdown windows
+exec --no-startup-id $TERMINAL -n dropdown_term
+exec --no-startup-id $TERMINAL -n dropdown_calc -e python
+
+# Set up window parameters
+for_window [instance="dropdown_*"] floating enable
+for_window [instance="dropdown_*"] sticky enable
+for_window [instance="dropdown_*"] scratchpad show
+for_window [instance="dropdown_*"] resize set 1920 1080
+for_window [instance="dropdown_*"] move position center
+for_window [instance="dropdown_*"] move scratchpad
+
+# Show and hide
+bindsym $mod+y [instance="dropdown_term"] scratchpad show; [instance="dropdown_term"] move position center
+bindsym $mod+i [instance="dropdown_calc"] scratchpad show; [instance="dropdown_calc"] move position center
+
 #############
 #  Windows  #
 #############
 
 # Kill active window
-bindsym $mod+q kill 
+bindsym $mod+q [con_id="__focused__" instance="^(?!dropdown_).*$"] kill 
 
 # Floating windows
 bindsym $mod+b floating toggle
@@ -94,6 +116,11 @@ bindsym $mod+Shift+y resize shrink width 5 px or 5 ppt
 bindsym $mod+Shift+u resize grow height 5 px or 5 ppt
 bindsym $mod+Shift+i resize shrink height 5 px or 5 ppt
 bindsym $mod+Shift+o resize grow width 5 px or 5 ppt
+
+# Resize windows to 16:9 aspect ratio
+bindsym $mod+Control+Shift+z resize set width 1600 px; resize set height 900 px
+bindsym $mod+z resize grow width 16 px; resize grow height 9 px
+bindsym $mod+Shift+z resize shrink width 16 px; resize shrink height 9 px
 
 # Change focus
 bindsym $mod+h focus left
@@ -199,4 +226,8 @@ bindsym $mod+Escape mode $mode_system
 bar {
 	font pango:Icons, Inconsolata 11
 	status_command i3blocks
+	colors {
+		background #191b1c
+		separator #7f8c8d
+	}
 }

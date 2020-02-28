@@ -12,7 +12,7 @@ export BROWSER="firefox"
 
 [ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion # Run bash-completion script if it exists
 
-[ -r ~/.bash_aliases ] && . ~/.bash_aliases # Inject aliases from separate alias file
+[ -r "$HOME/.bash_aliases" ] && . "$HOME/.bash_aliases" # Inject aliases from separate alias file
 
 # Set prompt
 if [ "${EUID}" == 0 ]; then
@@ -58,3 +58,8 @@ shopt -s expand_aliases
 shopt -s histappend
 shopt -s autocd
 
+set -o vi
+
+# Run todo on startup to display all things to do
+todo=$(todo)
+[ "$todo" != "" ] && printf "TODO: \n" && todo
