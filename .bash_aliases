@@ -3,11 +3,6 @@
 # Confirm before copy
 alias cp="cp -i"
 
-# Human-readable sizes
-alias df='df -h'
-alias du='du -h'
-alias free='free -m'
-
 # add color
 alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'
@@ -46,6 +41,3 @@ alias rebash='source ~/.bashrc'
 # print the time in different formats
 alias datetime='date +"%Y-%m-%d %I:%M:%S %p"'
 alias timestamp='date +"%Y-%m-%dT%H.%M.%S"'
-
-# allow nav to change the working directory
-alias nav='. ~/.local/bin/nav-prealias'
