@@ -28,9 +28,14 @@ client.placeholder		#191b1c #191b1c #ffffff #191b1c #191b1c
 client.background		#191b1c	
 
 # Startup programs
-exec --no-startup-id "~/.config/i3/startup"
-exec --no-startup-id dunst
+exec --no-startup-id "xrandr --dpi 196"
+exec --no-startup-id "xss-lock --transfer-sleep-lock -- i3lock --nofork"
+exec --no-startup-id "nm-applet"
+exec --no-startup-id "dunst"
+exec --no-startup-id "picom -b"
+exec --no-startup-id "i3-battery-popup -t 30s"
 exec --no-startup-id "feh --bg-scale --randomize ~/pictures/wallpaper/*"
+exec --no-startup-id "transmission-daemon"
 
 # Volume keys
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -85,7 +90,7 @@ bindsym $mod+s mode $mode_start
 ######################
 
 # Start up dropdown windows
-exec --no-startup-id $TERMINAL -n dropdown_term
+exec --no-startup-id "$TERMINAL -n dropdown_term" 
 exec --no-startup-id $TERMINAL -n dropdown_calc -e python
 
 # Set up window parameters
@@ -226,8 +231,14 @@ bindsym $mod+Escape mode $mode_system
 bar {
 	font pango:Icons, Inconsolata 11
 	status_command i3blocks
+	position top
 	colors {
 		background #191b1c
 		separator #7f8c8d
+		statusline #ced8dd
+		focused_workspace #1d99f3 #191b1c #1d99f3
+		active_workspace #1d99f3 #191b1c #1d99f3
+		inactive_workspace #7f8c8d #191b1c #7f8c8d
+		urgent_workspace #ed1515 #191b1c #ed1515
 	}
 }
