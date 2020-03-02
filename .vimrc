@@ -1,4 +1,7 @@
 let mapleader =","
+
+au FileType xhtml,xml so ~/.vim/ftplugin/html_autoclosetag.vim
+
 syntax on
 set autoindent
 set hlsearch
