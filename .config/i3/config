@@ -64,11 +64,14 @@ bindsym $mod+r exec $TERMINAL -e $FILE
 bindsym $mod+p exec $TERMINAL -e htop
 
 # Dmenu tools
-bindsym $mod+d exec dmenu_run
-bindsym $mod+Shift+d exec dmenu_run_terminal
+bindsym $mod+d exec "dmenu_run -fn 'Inconsolata,DejaVu Sans Mono'"
+bindsym $mod+Shift+d exec "dmenu_run_terminal -fn 'Inconsolata,DejaVu Sans Mono'"
 bindsym $mod+F11 exec dmenu_umount
 bindsym $mod+F12 exec dmenu_mount
 bindsym $mod+u exec dmenu_unicode
+
+# Change keyboard
+bindsym $mod+c exec --no-startup-id "togglekb"
 
 # Start less common programs through special mode
 set $mode_start "Start:   [b] bleachbit | [c] chromium | [g] gimp | [m] multimc | [M] minecraft | [s] steam"
@@ -146,6 +149,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 bindsym $mod+Shift+a focus child
+bindsym $mod+Shift+c sticky toggle
 
 # Window gaps
 gaps inner 15

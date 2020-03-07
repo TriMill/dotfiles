@@ -1,8 +1,11 @@
 let mapleader =","
 
+execute pathogen#infect()
+
 au FileType xhtml,xml so ~/.vim/ftplugin/html_autoclosetag.vim
 
 syntax on
+filetype plugin indent on
 set autoindent
 set hlsearch
 set tabstop=4
@@ -25,8 +28,8 @@ inoremap <Down> <Nop>
 inoremap <Left> <Nop>
 inoremap <Right> <Nop>
 
-" LaTeX commands
-map <leader>c :!pdflatex %<CR>
+" Universal compile script
+map <leader>c :!compile %<CR>
 
 " Map <leader><leader> to stop highlighting matches
 map <leader><leader> :noh<CR>
