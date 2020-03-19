@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# REQUIRES:
+#	bash
+#	coreutils
+#	acpi
+#	acpid
+
+# You may need to replace "Battery 1" with "Battery 0" or another battery number
+
+battery=$(acpi -b | grep "Battery 1" | awk '{print $3 $4 $5}' | sed 's/,/ /g')
+status=$(echo "$battery" | awk '{print $1}')
+level=$(echo "$battery" | awk '{print $2}')
+level=${level::-1}
+time=" ($(echo "$battery" | awk '{print $3}' | cut -c 1-5))"
+
+symbol="?"
+[ "$status" = "Discharging" ] && symbol=$(printf "\\uF204")
+[ "$status" = "Discharging" ] && [ "$level" -lt "10" ] && symbol=$(printf "\\uF200")
+[ "$status" = "Charging" ] && symbol=$(printf "\\uF20D")
+[ "$status" = "Full" ] && symbol=$(printf "\\uF2E0")
+
+[ "$level" -eq "100" ] && [ "$status" != "Discharging" ] && time=""
+[ "$symbol" = "?" ] && time=""
+
+color="#$I3C_GREEN"
+[ "$level" -le "50" ] && color="#$I3C_YELLOW"
+[ "$level" -le "20" ] && color="#$I3C_RED"
+
+printf "<span color='%s'>%s %s%%</span>%s\n" "$color" "$symbol" "$level" "$time"

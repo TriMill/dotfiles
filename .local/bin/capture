@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# REQUIRES:
+#	sh
+#	ncurses
+#	coreutils
+
+tput clear
+tput civis
+"$@"
+tput civis
+
+while :; do
+	sleep 1s
+done

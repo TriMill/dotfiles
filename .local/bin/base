@@ -1,0 +1,62 @@
+#!/bin/bash
+
+# REQUIRES:
+#	bash
+#	coreutils
+#	bc
+
+BASENAME="$(basename "$0")"
+
+print_err() {
+	>&2 printf "%s. Run '%s --help' for help\n" "$1" "$BASENAME"
+	exit 1
+}
+
+[ "$#" -eq "0" ] && print_err "No arguments specified"
+if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
+	printf "Help message\n"
+	exit 0	
+fi
+
+TO=""
+FROM=""
+INPUT=""
+declare -a ARGS
+while [ $# -gt 0 ]; do
+	unset OPTIND
+	unset OPTARG
+	while getopts "t:f:n:" opt; do
+		case $opt in
+			t)	TO="$OPTARG" ;;
+			f)	FROM="$OPTARG" ;;
+			n)	INPUT="$OPTARG" ;;
+			*)	print_err "Unknown argument $opt"
+				exit 1 ;;
+		esac
+	done
+	
+	shift $((OPTIND-1))
+	if [ "$#" -gt 0 ]; then
+		ARGS+=("$1")
+		shift
+	fi
+done
+
+ARGLEN="${#ARGS[@]}"
+
+if [ "$ARGLEN" -gt "0" ]; then
+	for arg in "${ARGS[@]}"; do
+		[ "$FROM" = "" ] && FROM=$arg && continue
+		[ "$TO" = "" ] && TO=$arg && continue
+		[ "$INPUT" = "" ] && INPUT=$arg && continue
+		print_err "Too many arguments"
+	done
+fi
+	
+[ "$FROM" = "" ] && FROM=10
+[ "$TO" = "" ] && TO=10
+[ "$INPUT" = "" ] && read -r INPUT
+INPUT=$(echo "$INPUT" | tr '[:lower:]' '[:upper:]')
+
+printf "%s\n" "$(echo "obase=$TO; ibase=$FROM; $INPUT" | bc)"
+	

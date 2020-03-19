@@ -1,0 +1,30 @@
+#!/bin/sh
+
+# REQUIRES:
+#	sh
+#	coreutils
+#	libnotify
+#	xsel
+#	dmenu
+
+# '$HOME/.local/bin/unicode_list' must be a list of unicode characters in the following format:
+# 	UUUUU____C____NAME
+# Where:
+#	UUUUU is the 5-digit hex codepoint
+#	____ is four spaces
+#	C is the unicode character
+#	NAME is the name of the character
+# Example:
+#	000B5    µ    MICRO SIGN
+#	1F603    😃    SMILING FACE WITH OPEN MOUTH
+
+sel="$(dmenu -i -l 20 -fn 'Inconsolata,JoyPixels,Symbola-10' < "$HOME/.local/bin/unicode_list" )"
+
+if [ "$sel" != "" ]; then
+	char="$(echo "$sel" | sed -r 's/[0-9A-Fa-f]+    |    .+//g')"
+	code="$(echo "$sel" | awk '{print $1}')"
+	/bin/echo -n "$char" | xsel -bi
+	/bin/echo -n "$code" | xsel -pi
+	notify-send "$char copied to clipboard"
+	notify-send "$code copied to primary"
+fi

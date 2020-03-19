@@ -1,0 +1,15 @@
+#!/bin/bash
+
+greater() {
+	(( $(echo "$1 > $2" | bc -l) ))
+}
+
+temp=$(sensors | grep "Package id" | awk '{print $4}' | sed 's/[^0-9\.-]//g')
+
+color="#$I3C_GREEN"
+(greater "$temp" "70") && color="#$I3C_YELLOW"
+(greater "$temp" "85") && color="#$I3C_RED"
+
+printf "<span color='%s'>%s°C</span>\n" "$color" "$temp"
+
+

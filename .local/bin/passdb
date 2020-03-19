@@ -1,0 +1,114 @@
+#!/bin/bash
+
+set -e
+BASENAME="$(basename "$0")"
+VERSION="0.1.0"
+
+# Exit if no arguments given
+if [ "$#" -le 0 ]; then
+	echo "$BASENAME: arguments required"
+	echo "Run '$BASENAME -h' for help"
+	exit 1
+fi
+
+# Create .passdb directory if it doesn't exist
+PASS_DIR="$HOME/.passdb"
+[ ! -d "$PASS_DIR" ] && mkdir "$PASS_DIR"
+
+if [ "$1" == "-r" ] || [ "$1" == "--read" ]; then
+	# Check to make sure file was specified and exists
+	if [ "$#" -lt 2 ]; then
+		# No file given
+		echo "$BASENAME: no filename specified"
+		echo "Run '$BASENAME -h' for help"
+		exit 1
+	elif [ ! -f "$PASS_DIR/$2.aes" ]; then
+		# File does not exist
+		echo "$BASENAME: password file for '$2' does not exist"
+		echo "Run '$BASENAME -h' for help"
+		exit 1
+	fi
+
+	# Decrypt file and print out password
+	set +e
+	PASS="$(openssl enc -d -aes-256-cbc -salt -pbkdf2 -in "$PASS_DIR/$2.aes" 2> /dev/null)"
+	if [ "$?" -gt 0 ]; then
+		echo "Could not decrypt password for '$2'. Bad decryption key?"
+		exit 1
+	fi
+	set -e
+	echo "$PASS"
+
+elif [ "$1" == "-a" ] || [ "$1" == "--add" ]; then
+	# Check to make sure file was specified and exists
+	if [ "$#" -lt 2 ]; then
+		# No file given
+		echo "$BASENAME: no filename specified"
+		echo "Run '$BASENAME -h' for help"
+		exit 1
+	elif [ -f "$PASS_DIR/$2.aes" ]; then
+		# File already exists
+		echo "$BASENAME: password file for '$2' already exists"
+		echo "Run '$BASENAME -d \"$2\"' to delete it"
+		echo "Run '$BASENAME -h' for help"
+		exit 1
+	fi
+
+	# Prompt user to enter their password
+	read -rsp "Enter password to save for '$2': " PASS
+	echo ""
+	
+	# Encrypt the password and save it to file
+	echo "$PASS" | openssl enc -aes-256-cbc -salt -pbkdf2 -out "$PASS_DIR/$2.aes"
+	echo "Successfully set password for $2"
+
+elif [ "$1" == "-d" ] || [ "$1" == "--delete" ]; then
+	if [ "$#" -lt 2 ]; then
+		# No file given
+		echo "$BASENAME: no filename specified"
+		echo "Run '$BASENAME -h' for help"
+		exit 1
+	elif [ ! -f "$PASS_DIR/$2.aes" ]; then
+		# File already exists
+		echo "$BASENAME: password file for '$2' does not exist"
+		echo "Run '$BASENAME -h' for help"
+		exit 1
+	fi
+
+	echo "Are you sure you want to delete the password for '$1'?"
+	echo "THIS CANNOT BE UNDONE"
+	read -rp "Retype the filename to delete this password: " CONFIRM
+
+	if [ "$CONFIRM" == "$2" ]; then
+		rm "$PASS_DIR/$2.aes"
+		echo "Deleted password for '$2'"
+		exit 0
+	else
+		echo "Incorrect. No changes made"
+		exit 1
+	fi
+
+elif [ "$1" == "-l" ] || [ "$1" == "--list" ]; then
+	# List out passwords
+	ls "$PASS_DIR" | grep ".aes" | sed "s/\..*//g"
+elif [ "$1" == "-p" ] || [ "$1" == "--path" ]; then
+	echo "$PASS_DIR"
+elif [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
+	echo "usage: $BASENAME <operation> [...]"
+	echo "operations: "
+	echo "	$BASENAME {-h --help}             view this help information"
+	echo "	$BASENAME {-v --version}          view the version number"
+	echo "	$BASENAME {-a --add} <name>       add a new password entry"
+	echo "	$BASENAME {-r --read} <name>      read a password entry"
+	echo "	$BASENAME {-d --delete} <name>    delete a password entry"
+	echo "	$BASENAME {-l --list}             list all password entries"
+	echo "	$BASENAME {-p --path}			  print the location where passwords are stored"
+elif [ "$1" == "-v" ] || [ "$1" == "--version" ]; then
+	echo "passdb version $VERSION"
+else
+	echo "$BASENAME: invalid option $1"
+	echo "Run '$BASENAME -h' for help"
+	exit 1
+fi
+
+exit 0

@@ -1,0 +1,30 @@
+#!/bin/sh
+
+# REQUIRES:
+#	sh
+#	coreutils
+#	util-linux
+#	sudo
+#	procps-ng
+#	findutils
+#	libnotify
+#	dmenu
+
+# Modified from Luke Smith's program (https://github.com/LukeSmithxyz/voidrice)
+# Edit your sudoers file to make sure you can run 'sudo mount' without entering a password
+
+mountable=$(lsblk -lp | grep 'part $' | awk '{print $1, "(" $4 ")"}')
+[ "$mountable" = "" ] && exit 1
+chosen=$(echo "$mountable" | dmenu -i -p "Mount which drive?" -fn "Inconsolata,DejaVu Sans Mono" | awk '{print $1}')
+[ "$chosen" = "" ] && exit 1
+sudo mount "$chosen" && exit 0
+dirs=$(find /mnt /media /home/tristanm/mnt -empty -type d -maxdepth 1 2>/dev/null)
+mountpoint=$(echo "$dirs" | sort | dmenu -i -p "Enter mount point:" -fn "Inconsolata,DejaVu Sans Mono")
+[ "$mountpoint" = "" ] && exit 1
+if [ ! -d "$mountpoint" ]; then
+	domkdir=$(/bin/echo -e "No\nYes" | dmenu -i -p "$mountpoint does not exist. Create it?" -fn "Inconsolata,DejaVu Sans Mono")
+	[ "$domkdir" = "Yes" ] || [ "$domkdir" = "y" ] && sudo mkdir -p "$mountpoint"
+fi
+sudo mount "$chosen" "$mountpoint" & pgrep -x dunst && notify-send "$chosen mounted to $mountpoint."
+	
+	

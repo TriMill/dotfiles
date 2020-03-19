@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# REQUIRES:
+#	sh
+#	coreutils
+#	gcc
+#	texlive-core
+#	texlive-bin
+
+file="$(readlink -f "$1")"
+[ -f "$file" ] || (echo "File $file does not exist"; exit 1)
+basename="$(basename "$file")"
+dir="$(dirname "$file")"
+base="${file%.*}"
+ext="${file##*\.}"
+
+echo "Compiling $basename..."
+
+cd "$dir" || exit 1
+
+case "$ext" in
+	"cpp"|"cc"|"cxx") g++ "$file" -o "$base" && echo "Compiled C++" ;;
+	"tex") pdflatex "$file" && echo "Compiled LaTeX" ;;
+	"c") gcc "$file" -o "$base" && echo "Compiled C" ;;
+	*) echo "Cannot compile file '$basename'" && exit 1 ;;
+esac

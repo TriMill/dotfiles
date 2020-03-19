@@ -1,0 +1,20 @@
+#!/bin/bash
+
+kblayout="$(setxkbmap -query | awk '/layout/{print $2}')"
+kbvariant="$(setxkbmap -query | awk '/variant/{print $2}')"
+
+if [[ "$1" == "ipa" ]]; then
+	if [[ "$kblayout" = "ipa" ]]; then
+		setxkbmap -layout us
+	else
+		setxkbmap -layout ipa
+	fi
+elif [[ "$1" == "intl" ]]; then
+	if [[ "$kblayout" = "us" ]] && [[ "$kbvariant" == "intl" ]]; then
+		setxkbmap -layout us
+	else
+		setxkbmap -layout us -variant intl
+	fi
+else
+	setxkbmap -layout us
+fi

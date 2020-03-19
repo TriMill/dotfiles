@@ -1,0 +1,37 @@
+#!/bin/bash
+
+get_weather() {
+	# Check that internet is connected
+	wget --spider 'https://www.google.com' 2> /dev/null || exit 1
+
+	# Get weather data
+	curl -sf 'wttr.in/Stow,%20MA' > /tmp/weatherreport
+	date +"%Y-%m-%d %H:%M:%S" >> /tmp/weatherreport
+}
+
+show_weather() {
+	$TERMINAL $SHELL -c 'cat /tmp/weatherreport; sleep infinity'
+}
+
+print_weather() {
+	# Extract temperatures
+	temps="$(sed '13q;d' < /tmp/weatherreport | grep -o "m\\(-+\\)*[0-9]\\+" | sort -n -t 'm' -k 2n | sed -e 1b -e '$!d' | sed 's/m//g; s/ /\n/g')"
+
+	lo="$(echo "$temps" | head -n 1)"
+	hi="$(echo "$temps" | tail -n 1)"
+
+	printf "\uF3B6 %s\u00B0F / %s\u00B0F\n" "$hi" "$lo"
+}
+
+# Click action
+case $BLOCK_BUTTON in
+	1)	notify-send "Reloading weather data..."
+		get_weather && print_weather
+		notify-send "Loaded new weather data." ;;
+	2)	notify-send "Reloading weather data..."
+		get_weather && show_weather
+		print_weather ;;
+	3)	show_weather
+		print_weather ;;
+	*)	get_weather && print_weather ;;
+esac

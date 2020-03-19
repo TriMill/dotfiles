@@ -1,0 +1,5 @@
+#!/bin/sh
+
+pulseaudio --kill
+sleep 0.2
+pulseaudio --start
