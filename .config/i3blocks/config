@@ -1,25 +1,51 @@
+full_text=⟨
+align=center
 separator_block_width=40
 markup=pango
+separator=false
+separator_block_width=16
+
+[keybd]
+command=i3-keybd
+interval=1
+
+[separator]
+
+[weather]
+command=i3-weather
+interval=1800
+
+[separator]
 
 [memory]
 command=i3-memory
 interval=2
 
+[separator]
+
 [network]
 command=i3-network
-interval=30
+interval=10
+
+[separator]
 
 [cpu-temp]
 command=i3-cpu
 interval=2
 
+[separator]
+
 [battery]
 command=i3-battery
-interval=6
+interval=5
+
+[separator]
 
 [date]
 command=date +"%Y-%m-%d"
 interval=1
+
+[separator]
 
 [time]
 command=date +"%I:%M %p "

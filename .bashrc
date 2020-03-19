@@ -3,10 +3,8 @@
 # ~/.bashrc
 #
 
-
 # Set environment variables
 export LC_ALL="en_US.UTF-8"
-export BROWSER="firefox"
 
 [[ $- != *i* ]] && return # Exit if shell is not interactive
 
@@ -49,8 +47,6 @@ man() {
 	man "$@"
 }
 
-xhost +local:root > /dev/null 2>&1
-
 complete -cf sudo # Add completion to sudo
 
 # Set terminal options
@@ -60,8 +56,10 @@ shopt -s expand_aliases
 shopt -s histappend
 shopt -s autocd
 
+# Enable vi mode
 set -o vi
 
 # Run todo on startup to display all things to do
 todo=$(todo)
 [ "$todo" != "" ] && printf "TODO: \n" && todo
+
