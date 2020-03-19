@@ -10,7 +10,7 @@ font pango:Icons pango:Inconsolata 10
 default_border pixel 2
 default_floating_border pixel 2
 
-# Color scheme to use
+# Window colors
 # class					border	bg		text	indic.	child_border
 client.focused			#76797d	#0c0d0e	#ffffff	#1890f0	#76797d
 client.focused_inactive	#191a1c	#0c0d0e	#ffffff	#191a1c	#191a1c
@@ -18,6 +18,10 @@ client.unfocused		#191a1c	#0c0d0e	#ffffff	#191a1c	#191a1c
 client.urgent			#ed2020	#561c1d	#ffffff	#ed2020	#ed2020
 client.placeholder		#191a1c #0c0d0e #ffffff #191a1c #191a1c
 client.background		#191a1c	
+
+#############
+#  Windows  #
+#############
 
 # Startup programs
 exec --no-startup-id "xrandr --dpi 196"
@@ -30,51 +34,7 @@ exec --no-startup-id "transmission-daemon"
 
 exec --no-startup-id i3-msg 'workspace 8; exec /usr/bin/thunderbird'
 
-# Volume keys
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-
-# Brightness keys
-bindsym XF86MonBrightnessUp exec "xbacklight -inc 10"
-bindsym XF86MonBrightnessDown exec "xbacklight -dec 10"
-
-# Airplane mode
-bindsym XF86RFKill nop
-
-# Night mode
-bindsym $mod+m exec "redshift -O 4000"
-bindsym $mod+Shift+m exec "redshift -x" 
-
-#####################
-#  Launch programs  #
-#####################
-
-# Shortcuts for common programs
-bindsym $mod+Return exec $TERMINAL
-bindsym $mod+w exec $BROWSER
-bindsym $mod+F1 exec $TERMINAL -e man i3
-bindsym $mod+r exec $TERMINAL -e $FILE
-bindsym $mod+p exec $TERMINAL -e htop
-
-# Dmenu tools
-bindsym $mod+d exec "dmenu_run -fn 'Inconsolata,DejaVu Sans Mono'"
-bindsym $mod+Shift+d exec "dmenu_run_terminal -fn 'Inconsolata,DejaVu Sans Mono'"
-bindsym $mod+F11 exec dmenu_umount
-bindsym $mod+F12 exec dmenu_mount
-bindsym $mod+u exec dmenu_unicode
-
-# Change keyboard
-bindsym $mod+c exec --no-startup-id "togglekb ipa"
-bindsym $mod+Shift+c exec --no-startup-id "togglekb intl"
-
-######################
-#  Dropdown windows  #
-######################
-
-# Start up dropdown windows
+# Dropdown windows
 exec --no-startup-id "$TERMINAL -n dropdown_term" 
 exec --no-startup-id $TERMINAL -n dropdown_calc -e python
 
@@ -86,62 +46,12 @@ for_window [instance="dropdown_*"] resize set 1920 1080
 for_window [instance="dropdown_*"] move position center
 for_window [instance="dropdown_*"] move scratchpad
 
-# Show and hide
-bindsym $mod+y [instance="dropdown_term"] scratchpad show; [instance="dropdown_term"] move position center
-bindsym $mod+i [instance="dropdown_calc"] scratchpad show; [instance="dropdown_calc"] move position center
-
-#############
-#  Windows  #
-#############
-
-# Kill active window
-bindsym $mod+q [con_id="__focused__" instance="^(?!dropdown_).*$"] kill 
-
-# Floating windows
-bindsym $mod+b floating toggle
+# Move floating windows by holding down $mod
 floating_modifier $mod
-
-# Resize windows
-bindsym $mod+Shift+y resize shrink width 5 px or 5 ppt
-bindsym $mod+Shift+u resize grow height 5 px or 5 ppt
-bindsym $mod+Shift+i resize shrink height 5 px or 5 ppt
-bindsym $mod+Shift+o resize grow width 5 px or 5 ppt
-
-# Resize windows to 16:9 aspect ratio
-bindsym $mod+Control+Shift+z resize set width 1600 px; resize set height 900 px
-bindsym $mod+z resize grow width 32 px; resize grow height 18 px
-bindsym $mod+Shift+z resize shrink width 32 px; resize shrink height 18 px
-
-# Change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
-
-# move focused window
-bindsym $mod+Shift+h move left 30 px
-bindsym $mod+Shift+j move down 30 px
-bindsym $mod+Shift+k move up 30 px
-bindsym $mod+Shift+l move right 30 px
-
-# Window manipulation
-bindsym $mod+t split toggle
-bindsym $mod+f fullscreen toggle
-bindsym $mod+e layout toggle split
-bindsym $mod+space focus mode_toggle
-bindsym $mod+a focus parent
-bindsym $mod+Shift+a focus child
-bindsym $mod+v sticky toggle
 
 # Window gaps
 gaps inner 15
 gaps outer 0
-bindsym $mod+Shift+e gaps inner current set 15; gaps outer current set 0
-bindsym $mod+Shift+t gaps inner current set 0; gaps outer current set 0
-bindsym $mod+g gaps inner current plus 5
-bindsym $mod+Shift+g gaps inner current minus 5
-bindsym $mod+Ctrl+g gaps outer current plus 5
-bindsym $mod+Ctrl+Shift+g gaps outer current minus 5
 
 ################
 #  Workspaces  #
@@ -161,41 +71,9 @@ set $ws10 "10"
 
 workspace $ws1 output primary
 
-# switch to workspace
-bindsym $mod+1 workspace number $ws1
-bindsym $mod+2 workspace number $ws2
-bindsym $mod+3 workspace number $ws3
-bindsym $mod+4 workspace number $ws4
-bindsym $mod+5 workspace number $ws5
-bindsym $mod+6 workspace number $ws6
-bindsym $mod+7 workspace number $ws7
-bindsym $mod+8 workspace number $ws8
-bindsym $mod+9 workspace number $ws9
-bindsym $mod+0 workspace number $ws10
-
-bindsym $mod+Tab workspace next_on_output
-bindsym $mod+Shift+Tab workspace prev_on_output
-
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number $ws1
-bindsym $mod+Shift+2 move container to workspace number $ws2
-bindsym $mod+Shift+3 move container to workspace number $ws3
-bindsym $mod+Shift+4 move container to workspace number $ws4
-bindsym $mod+Shift+5 move container to workspace number $ws5
-bindsym $mod+Shift+6 move container to workspace number $ws6
-bindsym $mod+Shift+7 move container to workspace number $ws7
-bindsym $mod+Shift+8 move container to workspace number $ws8
-bindsym $mod+Shift+9 move container to workspace number $ws9
-bindsym $mod+Shift+0 move container to workspace number $ws10
-
 #########################
 #  i3 system shortcuts  # 
 #########################
-
-# Reload the configuration file
-bindsym $mod+F5 reload
-# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+F6 restart
 
 set $mode_system "System:   [l] lock | [o] logout | [z] suspend | [h] hibernate | [r] reboot | [s] shutdown"
 mode $mode_system {
@@ -210,11 +88,10 @@ mode $mode_system {
 	bindsym Escape mode "default"
 	bindsym $mod+Escape mode "default"
 }
-bindsym $mod+Escape mode $mode_system
 
-################
-#  System bar  #
-################
+###########
+#  i3bar  #
+###########
 
 bar {
 	font pango:Icons, Inconsolata 11
@@ -231,3 +108,149 @@ bar {
 	}
 	i3bar_command "i3blocks | i3bar -t"
 }
+
+#################
+#  Keybindings  #
+#################
+
+## XF86 Keys ##
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+bindsym XF86MonBrightnessUp exec "xbacklight -inc 10"
+bindsym XF86MonBrightnessDown exec "xbacklight -dec 10"
+
+# Function keys ##
+
+bindsym $mod+Escape mode $mode_system
+
+# bindsym $mod+F1
+# bindsym $mod+F2
+# bindsym $mod+F3
+# bindsym $mod+F4
+bindsym $mod+F5 reload
+bindsym $mod+F6 restart
+# bindsym $mod+F7
+# bindsym $mod+F8
+# bindsym $mod+F9
+# bindsym $mod+F10
+bindsym $mod+F11 exec dmenu_umount
+bindsym $mod+F12 exec dmenu_mount
+
+# Number keys ##
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+## Top row ##
+
+bindsym $mod+q [con_id="__focused__" instance="^(?!dropdown_).*$"] kill 
+# bindsym $mod+Shift+q
+
+bindsym $mod+w exec $BROWSER
+# bindsym $mod+Shift+w
+
+bindsym $mod+e layout toggle split
+bindsym $mod+Shift+e gaps inner current set 15; gaps outer current set 0
+
+bindsym $mod+r exec $TERMINAL -e $FILE
+# bindsym $mod+Shift+r
+
+bindsym $mod+t split toggle
+bindsym $mod+Shift+t gaps inner current set 0; gaps outer current set 0
+
+bindsym $mod+y [instance="dropdown_term"] scratchpad show; [instance="dropdown_term"] move position center
+bindsym $mod+Shift+y resize shrink width 5 px or 5 ppt
+
+bindsym $mod+u exec dmenu_unicode
+bindsym $mod+Shift+u resize grow height 5 px or 5 ppt
+
+bindsym $mod+i [instance="dropdown_calc"] scratchpad show; [instance="dropdown_calc"] move position center
+bindsym $mod+Shift+i resize shrink height 5 px or 5 ppt
+
+# bindsym $mod+o
+bindsym $mod+Shift+o resize grow width 5 px or 5 ppt
+
+bindsym $mod+p exec $TERMINAL -e htop
+# bindsym $mod+Shift+p
+
+## Home row ##
+
+bindsym $mod+a focus parent
+bindsym $mod+Shift+a focus child
+
+bindsym $mod+d exec "dmenu_run -fn 'Inconsolata,DejaVu Sans Mono'"
+bindsym $mod+Shift+d exec "dmenu_run_terminal -fn 'Inconsolata,DejaVu Sans Mono'"
+
+bindsym $mod+f fullscreen toggle
+# bindsym $mod+f
+
+bindsym $mod+g gaps inner current plus 5
+bindsym $mod+Shift+g gaps inner current minus 5
+
+bindsym $mod+h focus left
+bindsym $mod+Shift+h move left 30 px
+
+bindsym $mod+j focus down
+bindsym $mod+Shift+j move down 30 px
+
+bindsym $mod+k focus up
+bindsym $mod+Shift+k move up 30 px
+
+bindsym $mod+l focus right
+bindsym $mod+Shift+l move right 30 px
+
+## Bottom row ##
+
+bindsym $mod+z resize grow width 32 px; resize grow height 18 px
+bindsym $mod+Shift+z resize shrink width 32 px; resize shrink height 18 px
+bindsym $mod+Control+z resize set width 1600 px; resize set height 900 px
+
+bindsym $mod+x gaps outer current plus 5
+bindsym $mod+Shift+x gaps outer current minus 5
+
+bindsym $mod+c exec --no-startup-id "togglekb ipa"
+bindsym $mod+Shift+c exec --no-startup-id "togglekb intl"
+
+bindsym $mod+v sticky toggle
+# bindsym $mod+Shift+v
+
+bindsym $mod+b floating toggle
+# bindsym $mod+Shift+b
+
+# bindsym $mod+n
+# bindsym $mod+Shift+n
+
+bindsym $mod+m exec "redshift -O 4000"
+bindsym $mod+Shift+m exec "redshift -x" 
+
+## Other keys ##
+
+bindsym $mod+Tab workspace next_on_output
+bindsym $mod+Shift+Tab workspace prev_on_output
+
+bindsym $mod+Return exec $TERMINAL
+
+bindsym $mod+space focus mode_toggle
+
