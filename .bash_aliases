@@ -22,10 +22,12 @@ alias iplocate='dig @resolver1.opendns.com ANY myip.opendns.com +short'
 alias conf='cd ~/.config'
 alias docs='cd ~/documents'
 alias bin='cd ~/.local/bin'
-alias v-i3='vim ~/.config/i3/config'
-alias v-i3b='vim ~/.config/i3blocks/config'
-alias v-ba='vim ~/.bash_aliases'
-alias v-brc='vim ~/.bashrc'
+alias v-i3='nvim ~/.config/i3/config'
+alias v-i3b='nvim ~/.config/i3blocks/config'
+alias v-ba='nvim ~/.bash_aliases'
+alias v-brc='nvim ~/.bashrc'
+alias v-nv='nvim ~/.config/nvim/init/vim'
+alias v-pr='nvim ~/.profile'
 
 # pacman tools
 alias pacls='pacman -Qe | column -t'
@@ -41,3 +43,4 @@ alias rebash='source ~/.bashrc'
 # print the time in different formats
 alias datetime='date +"%Y-%m-%d %I:%M:%S %p"'
 alias timestamp='date +"%Y-%m-%dT%H.%M.%S"'
+

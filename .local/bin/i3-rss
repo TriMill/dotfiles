@@ -1,0 +1,16 @@
+#!/bin/sh
+
+print_unread() {
+	count="$(newsboat -x print-unread | awk '{print $1}')"
+	printf "<span color='%s'>\\uF33D</span> %s\n" "$I3C_ORANGE" "$count"
+}
+
+case "$BLOCK_BUTTON" in
+	1)	notify-send "Reloading RSS..."
+		newsboat -x reload
+		notify-send "Reloaded RSS."
+		print_unread ;;
+	3)	($TERMINAL -e newsboat) & print_unread ;;
+	*)	print_unread ;;
+esac
+

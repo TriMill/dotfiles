@@ -1,21 +1,21 @@
 #!/bin/bash
 # todo: simple todo script
-
-if [[ ! -f "$HOME/.todo" ]]; then
-	touch "$HOME/.todo"
+todo_file="$HOME/.local/share/todo"
+if [[ ! -f "$todo_file" ]]; then
+	touch "$todo_file"
 fi
 
 if ! (($#)); then
-	cat "$HOME/.todo"
+	cat "$todo_file"
 elif [[ "$1" == "-l" ]]; then
-	nl -b a "$HOME/.todo"
+	nl -b a "$todo_file"
 elif [[ "$1" == "-c" ]]; then
-	> "$HOME/.todo"
+	> "$todo_file"
 elif [[ "$1" == "-r" ]]; then
-	nl -b a "$HOME/.todo"
+	nl -b a "$todo_file"
 	eval printf %.0s- '{1..'"${COLUMNS:-$(tput cols)}"\}; echo
 	read -rp "Type a number to remove: " number
-	sed -i "${number}d" "$HOME/.todo" "$HOME/.todo"
+	sed -i -e "${number}d" "$todo_file"
 else
-	printf "%s\n" "$*" >> "$HOME/.todo"
+	printf "%s\n" "$*" >> "$todo_file"
 fi

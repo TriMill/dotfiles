@@ -1,24 +1,23 @@
 #!/bin/bash
 
 print_available() {
-	
-	if wget -q --spider "https://www.google.com/"; then
+	if timeout 3s wget -q --spider "https://www.google.com/"; then
 		ip=$(dig +short myip.opendns.com @resolver1.opendns.com)
-		printf "<span color='%s'>\\uF33D</span> %s\n" "#$I3C_GREEN" "$ip"
+		printf "<span color='%s'>\\uF35C</span> %s\n" "$I3C_GREEN" "$ip"
 	else
-		printf "<span color='%s'>\\uF22A No Internet</span>\n" "#$I3C_RED"
+		printf "<span color='%s'>\\uF22A No Internet</span>\n" "$I3C_RED"
 	fi
 }
 
 
 case "$BLOCK_BUTTON" in
-	1)	sudo ip link set wlp2s0 down
+	2)	sudo ip link set wlp2s0 down
 		sleep 1
 		sudo ip link set wlp2s0 up
 		sleep 1
 		print_available
 		notify-send "Restarted network" ;;
-	3)	$TERMINAL "$SHELL" -c 'nmtui'
+	3)	$TERMINAL -e nmtui
 		print_available ;;
 	*)	print_available
 esac

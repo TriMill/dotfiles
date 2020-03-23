@@ -23,8 +23,8 @@ symbol="?"
 [ "$level" -eq "100" ] && [ "$status" != "Discharging" ] && time=""
 [ "$symbol" = "?" ] && time=""
 
-color="#$I3C_GREEN"
-[ "$level" -le "50" ] && color="#$I3C_YELLOW"
-[ "$level" -le "20" ] && color="#$I3C_RED"
+color="$I3C_GREEN"
+[ "$level" -le "50" ] && color="$I3C_YELLOW"
+[ "$level" -le "20" ] && color="$I3C_RED"
 
 printf "<span color='%s'>%s %s%%</span>%s\n" "$color" "$symbol" "$level" "$time"

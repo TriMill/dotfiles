@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# REQUIRES
+#	coreutils
+#	libnotify
+#	sh
+#	
+
+previous="$(cat ~/.local/share/lastbackup)"
+current="$(date +"%s")"
+if [ "$((current - previous))" -gt 2592000 ]; then
+	notify-send "It's been over 30 days since your last backup" -t 0 -u critical
+elif [ "$((current - previous))" -gt 1728000 ]; then
+	notify-send "It's been over 20 days since your last backup"
+fi
+

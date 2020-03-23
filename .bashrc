@@ -20,7 +20,7 @@ if [ "${EUID}" == 0 ]; then
 		style ps1 light red; printf "[\\\\u@\\h"; 
 		style ps1 light yellow; printf " \\W"; 
 		style ps1 light red; printf "]\\$";
-		style ps1 reset; printf " \[";
+		style ps1 reset white; printf " \[";
 		tput cnorm; printf "\]"
 	)
 else
@@ -30,7 +30,7 @@ else
 		style ps1 light green; printf "[\\\\u@\\h"; 
 		style ps1 white; printf " \\W"; 
 		style ps1 light green; printf "]\\$";
-		style ps1 reset; printf " \[";
+		style ps1 reset white; printf " \[";
 		tput cnorm; printf "\]"
 	)
 fi

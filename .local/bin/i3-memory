@@ -14,14 +14,14 @@ total=$(round "$(echo "$free" | grep 'Mem' | awk '{print $2}')" 1024)
 used_swp=$(round "$(echo "$free" | grep 'Swap' | awk '{print $3}')" 1024)
 total_swp=$(round "$(echo "$free" | grep 'Swap' | awk '{print $2}')" 1024)
 
-color="#$I3C_GREEN"
-(greater "$used" "10") && color="#$I3C_YELLOW"
-(greater "$used" "14") && color="#$I3C_RED"
+color="$I3C_GREEN"
+(greater "$used" "10") && color="$I3C_YELLOW"
+(greater "$used" "14") && color="$I3C_RED"
 
-color_swp="#$I3C_GREEN"
-(greater "$used_swp" "4") && color_swp="#$I3C_YELLOW"
-(greater "$used_swp" "6") && color_swp="#$I3C_RED"
+color_swp="$I3C_GREEN"
+(greater "$used_swp" "4") && color_swp="$I3C_YELLOW"
+(greater "$used_swp" "6") && color_swp="$I3C_RED"
 
-printf "<span color='%s'>%s</span>/<span color='%s'>%sGiB</span> \uF301 " "$color" "$used" "#$I3C_BLUE" "$total"
-printf "<span color='%s'>%s</span>/<span color='%s'>%sGiB</span>\n" "$color_swp" "$used_swp" "#$I3C_BLUE" "$total_swp"
+printf "<span color='%s'>%s</span>/<span color='%s'>%sGiB</span> \uF301 " "$color" "$used" "$I3C_BLUE" "$total"
+printf "<span color='%s'>%s</span>/<span color='%s'>%sGiB</span>\n" "$color_swp" "$used_swp" "$I3C_BLUE" "$total_swp"
 

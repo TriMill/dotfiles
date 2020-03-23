@@ -12,7 +12,7 @@ if [ "$#" -le 0 ]; then
 fi
 
 # Create .passdb directory if it doesn't exist
-PASS_DIR="$HOME/.passdb"
+PASS_DIR="$HOME/.local/share/passdb"
 [ ! -d "$PASS_DIR" ] && mkdir "$PASS_DIR"
 
 if [ "$1" == "-r" ] || [ "$1" == "--read" ]; then
