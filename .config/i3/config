@@ -12,12 +12,12 @@ default_floating_border pixel 2
 
 # Window colors
 # class					border	bg		text	indic.	child_border
-client.focused			#76797d	#0c0d0e	#ffffff	#1890f0	#76797d
-client.focused_inactive	#191a1c	#0c0d0e	#ffffff	#191a1c	#191a1c
-client.unfocused		#191a1c	#0c0d0e	#ffffff	#191a1c	#191a1c
-client.urgent			#ed2020	#561c1d	#ffffff	#ed2020	#ed2020
-client.placeholder		#191a1c #0c0d0e #ffffff #191a1c #191a1c
-client.background		#191a1c	
+client.focused			#615c59	#1d2021	#f7f5d9	#3781a1	#615c59
+client.focused_inactive	#1d2021	#1d2021	#f7f5d9	#1d2021	#1d2021
+client.unfocused		#1d2021	#1d2021	#f7f5d9	#1d2021	#1d2021
+client.urgent			#c82022	#c82022	#f7f5d9	#c82022	#c82022
+client.placeholder		#1d2021	#1d2021	#f7f5d9	#1d2021	#1d2021
+client.background		#1d2021	
 
 #############
 #  Windows  #
@@ -52,6 +52,11 @@ floating_modifier $mod
 # Window gaps
 gaps inner 15
 gaps outer 0
+
+# Open windows on specific workspace
+for_window [title="GIMP Startup"] move workspace $ws5
+for_window [class="Gimp"] move workspace $ws5
+for_window [class="Gimp"] move workspace $ws5
 
 ################
 #  Workspaces  #
@@ -98,13 +103,13 @@ bar {
 	position top
 	status_command i3blocks
 	colors {
-		background #0c0d0edd
-		separator #76797d
-		statusline #d2d7da
-		focused_workspace #1890f0 #0c0d0edd #1890f0
-		active_workspace #1890f0 #0c0d0edd #1890f0
-		inactive_workspace #76797d #0c0d0edd #76797d
-		urgent_workspace #ed2020 #0c0d0edd #ed2020
+		background	#090a0bdb
+		separator	#615c59db
+		statusline	#f7f5d9
+		focused_workspace	#3781a1	#090a0bdb	#3781a1
+		active_workspace	#3781a1	#090a0bdb	#3781a1
+		inactive_workspace	#615c59	#090a0bdb	#615c59
+		urgent_workspace	#c82022	#090a0bdb	#c82022
 	}
 	i3bar_command "i3blocks | i3bar -t"
 }
@@ -175,10 +180,10 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+e gaps inner current set 15; gaps outer current set 0
 
 bindsym $mod+r exec $TERMINAL -e $FILE
-# bindsym $mod+Shift+r
+bindsym $mod+Shift+r exec $TERMINAL -e tuir
 
 bindsym $mod+t split toggle
-bindsym $mod+Shift+t gaps inner current set 0; gaps outer current set 0
+# bindsym $mod+Shift+t
 
 bindsym $mod+y [instance="dropdown_term"] scratchpad show; [instance="dropdown_term"] move position center
 bindsym $mod+Shift+y resize shrink width 5 px or 5 ppt
@@ -204,7 +209,7 @@ bindsym $mod+d exec "dmenu_run -fn 'Inconsolata,DejaVu Sans Mono'"
 bindsym $mod+Shift+d exec "dmenu_run_terminal -fn 'Inconsolata,DejaVu Sans Mono'"
 
 bindsym $mod+f fullscreen toggle
-# bindsym $mod+f
+bindsym $mod+Shift+f gaps inner current set 0; gaps outer current set 0
 
 bindsym $mod+g gaps inner current plus 5
 bindsym $mod+Shift+g gaps inner current minus 5

@@ -11,15 +11,15 @@ interval=1
 
 [separator]
 
-[weather]
-command=i3-weather
-interval=1800
+[rss]
+command=i3-rss
+interval=120
 
 [separator]
 
-[memory]
-command=i3-memory
-interval=2
+[weather]
+command=i3-weather
+interval=120
 
 [separator]
 
@@ -29,9 +29,15 @@ interval=10
 
 [separator]
 
+[memory]
+command=i3-memory
+interval=5
+
+[separator]
+
 [cpu-temp]
 command=i3-cpu
-interval=2
+interval=5
 
 [separator]
 
