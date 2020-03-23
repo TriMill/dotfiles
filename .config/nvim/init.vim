@@ -1,5 +1,13 @@
 let mapleader =","
 
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
+let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
+set termguicolors
+
+let g:gruvbox_contrast_dark = 'hard'
+colo gruvbox_custom
+
 execute pathogen#infect()
 
 au FileType xhtml,xml so ~/.vim/ftplugin/html_autoclosetag.vim
@@ -16,9 +24,6 @@ set foldenable
 set foldlevelstart=8
 set foldmethod=indent
 autocmd BufWritePost * :e
-let g:gruvbox_contrast_dark = 'hard'
-colo elflord
-colo gruvbox
 
 " Custom bindings for system copy-paste
 nmap <C-y> "+yy
