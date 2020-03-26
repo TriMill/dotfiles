@@ -31,7 +31,7 @@ alias v-pr='nvim ~/.profile'
 
 # pacman tools
 alias pacls='pacman -Qe | column -t'
-alias genpaclist='sudo pacman -Qqe > ~/.packagelist; echo "Regerated package list for" `pacman -Qqe | wc -l` "packages"'
+alias genpaclist='pacman -Qqe > ~/.packagelist; echo "Regerated package list for" `pacman -Qqe | wc -l` "packages"'
 alias sp='sudo pacman'
 
 # shorten python
