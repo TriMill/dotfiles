@@ -7,7 +7,13 @@
 #	texlive-core
 #	texlive-bin
 
-file="$(readlink -f "$1")"
+if [ "$1" = "-x" ]; then
+	run_after="1"
+	file="$(readlink -f "$2")"
+else
+	file="$(readlink -f "$1")"
+fi
+
 [ -f "$file" ] || (echo "File $file does not exist"; exit 1)
 basename="$(basename "$file")"
 dir="$(dirname "$file")"
@@ -18,9 +24,18 @@ echo "Compiling $basename..."
 
 cd "$dir" || exit 1
 
-case "$ext" in
-	"cpp"|"cc"|"cxx") g++ "$file" -o "$base" && echo "Compiled C++" ;;
-	"tex") pdflatex "$file" && echo "Compiled LaTeX" ;;
-	"c") gcc "$file" -o "$base" && echo "Compiled C" ;;
-	*) echo "Cannot compile file '$basename'" && exit 1 ;;
-esac
+# test for   // [COMPILE]   at beginning of file
+comp_msg="$(head -n 1 "$file" | grep '// \[COMPILE\]')"
+if [ -n "$comp_msg" ]; then
+	comp_msg="$(echo "$comp_msg" | cut -c 13-)"
+	eval "$(printf "$comp_msg" "$file" "$base")"
+else
+	case "$ext" in
+		"cpp"|"cc"|"cxx") g++ "$file" -o "$base" && echo "Compiled C++" ;;
+		"tex") pdflatex "$file" && echo "Compiled LaTeX" ;;
+		"c") gcc "$file" -o "$base" && echo "Compiled C" ;;
+		*) echo "Cannot compile file '$basename'" && exit 1 ;;
+	esac
+fi
+
+[ -n "$run_after" ] && eval "$base"

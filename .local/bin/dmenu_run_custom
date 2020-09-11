@@ -1,0 +1,6 @@
+#!/bin/sh
+
+choice="$(awk -F '	' '{print $1}' ~/.local/bin/program_list.txt | dmenu -i -fn 'Consolas,DejaVu Sans Mono')"
+[ -z "$choice" ] && exit 0
+
+eval "$(grep "^$choice" ~/.local/bin/program_list.txt | head -n 1 | awk -F '	' '{print $2}')" &

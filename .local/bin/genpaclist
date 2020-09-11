@@ -1,0 +1,33 @@
+#!/bin/sh
+
+filename="$HOME/.local/share/packagelist"
+if [ ! -f "$filename" ]; then
+	printf "%s does not exist. Create it? [Y/n] " "$filename"
+	read -r yn
+	[ "$yn" = "y" ] || [ "$yn" = "Y" ] || [ -z "$yn" ] || (
+		printf "No changes made.\n"
+		exit 0
+	)
+	pacman -Qqe > "$filename"
+	printf "Created package list for %s packages.\n" "$(wc -l "$filename")"
+else
+	tmp_list="/tmp/tmp_packagelist"
+
+	pacman -Qqe > "$tmp_list"
+	if diff "$filename" "$tmp_list" > /dev/null; then  
+		printf "No change to the package list. Exiting.\n"
+		exit 0
+	else
+		printf "Changes to be made: \n\n"
+		diff -U 0 "$filename" "$tmp_list" --color=always | cat
+		printf "\nOverwrite %s? [Y/n] " "$filename"
+		read -r yn
+		[ "$yn" = "y" ] || [ "$yn" = "Y" ] || [ -z "$yn" ] || (
+			printf "No changes made.\n"
+			exit 0
+		)
+		cat "$tmp_list" > "$filename"
+		printf "Updated package list for %s packages.\n" "$(wc -l "$filename")"
+	fi	
+fi
+

@@ -6,37 +6,33 @@
 
 # Appearance settings
 set $mod Mod4
-font pango:Icons pango:Inconsolata 10
+font pango:Icons, Inconsolata 10
 default_border pixel 2
 default_floating_border pixel 2
 
 # Window colors
 # class					border	bg		text	indic.	child_border
-client.focused			#615c59	#1d2021	#f7f5d9	#3781a1	#615c59
-client.focused_inactive	#1d2021	#1d2021	#f7f5d9	#1d2021	#1d2021
-client.unfocused		#1d2021	#1d2021	#f7f5d9	#1d2021	#1d2021
-client.urgent			#c82022	#c82022	#f7f5d9	#c82022	#c82022
-client.placeholder		#1d2021	#1d2021	#f7f5d9	#1d2021	#1d2021
-client.background		#1d2021	
+client.focused			#5c6370	#14161a	#abb2bf	#61afef	#5c6370
+client.focused_inactive	#14161a	#14161a	#abb2bf	#14161a	#14161a
+client.unfocused		#14161a	#14161a	#abb2bf	#14161a	#14161a
+client.urgent			#e06c75	#e06c75	#abb2bf	#e06c75	#e06c75
+client.placeholder		#14161a	#14161a	#abb2bf	#14161a	#14161a
+client.background		#14161a	
 
 #############
 #  Windows  #
 #############
 
 # Startup programs
-exec --no-startup-id "xrandr --dpi 196"
-exec --no-startup-id "nm-applet"
-exec --no-startup-id "dunst"
-exec --no-startup-id "picom -b"
 exec --no-startup-id "i3-battery-popup -n -t 30s"
-exec --no-startup-id "feh --bg-scale --randomize ~/pictures/wallpaper/*"
-exec --no-startup-id "transmission-daemon"
 
-exec --no-startup-id i3-msg 'workspace 8; exec /usr/bin/thunderbird'
+exec --no-startup-id i3-msg 'workspace 8; exec "nice -n 10 /usr/bin/thunderbird";'
+exec --no-startup-id i3-msg 'workspace 9; exec "nice -n 10 /usr/bin/discord";'
+exec --no-startup-id i3-msg 'workspace 1;'
 
 # Dropdown windows
 exec --no-startup-id "$TERMINAL -n dropdown_term" 
-exec --no-startup-id $TERMINAL -n dropdown_calc -e python
+exec --no-startup-id "$TERMINAL -n dropdown_calc -e python3"
 
 # Set up window parameters
 for_window [instance="dropdown_*"] floating enable
@@ -56,7 +52,12 @@ gaps outer 0
 # Open windows on specific workspace
 for_window [title="GIMP Startup"] move workspace $ws5
 for_window [class="Gimp"] move workspace $ws5
-for_window [class="Gimp"] move workspace $ws5
+for_window [class="Thunderbird"] move workspace $ws8
+for_window [class="discord"] move workspace $ws9
+
+# Force SFML windows to float
+for_window [class="sfml"] floating enable
+for_window [instance="sfml"] move position center
 
 ################
 #  Workspaces  #
@@ -99,17 +100,17 @@ mode $mode_system {
 ###########
 
 bar {
-	font pango:Icons, Inconsolata 11
+	font pango:Icons, Inconsolata 10
 	position top
 	status_command i3blocks
 	colors {
-		background	#090a0bdb
-		separator	#615c59db
-		statusline	#f7f5d9
-		focused_workspace	#3781a1	#090a0bdb	#3781a1
-		active_workspace	#3781a1	#090a0bdb	#3781a1
-		inactive_workspace	#615c59	#090a0bdb	#615c59
-		urgent_workspace	#c82022	#090a0bdb	#c82022
+		background	#14161a
+		separator	#5c6370
+		statusline	#abb2bf
+		focused_workspace	#61afef	#14161A	#61afef
+		active_workspace	#61afef	#14161A	#61afef
+		inactive_workspace	#5c6370	#14161A	#5c6370
+		urgent_workspace	#e06c75	#14161A	#e06c75
 	}
 	i3bar_command "i3blocks | i3bar -t"
 }
@@ -125,8 +126,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
-bindsym XF86MonBrightnessUp exec "xbacklight -inc 10"
-bindsym XF86MonBrightnessDown exec "xbacklight -dec 10"
+bindsym XF86MonBrightnessUp exec "xbacklight -inc 5"
+bindsym XF86MonBrightnessDown exec "xbacklight -dec 5"
 
 # Function keys ##
 
@@ -170,8 +171,9 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 
 ## Top row ##
 
-bindsym $mod+q [con_id="__focused__" instance="^(?!dropdown_).*$"] kill 
-# bindsym $mod+Shift+q
+bindsym $mod+q [con_id="__focused__" instance="^(?!dropdown_|Minecraft).*$"] kill 
+bindsym $mod+Shift+q [con_id="__focused__"] kill 
+bindsym $mod+Ctrl+q exec "kill -9 $(xdotool getactivewindow getwindowpid)"
 
 bindsym $mod+w exec $BROWSER
 # bindsym $mod+Shift+w
@@ -179,7 +181,7 @@ bindsym $mod+w exec $BROWSER
 bindsym $mod+e layout toggle split
 bindsym $mod+Shift+e gaps inner current set 15; gaps outer current set 0
 
-bindsym $mod+r exec $TERMINAL -e $FILE
+bindsym $mod+r exec $FILE
 bindsym $mod+Shift+r exec $TERMINAL -e tuir
 
 bindsym $mod+t split toggle
@@ -205,8 +207,11 @@ bindsym $mod+p exec $TERMINAL -e htop
 bindsym $mod+a focus parent
 bindsym $mod+Shift+a focus child
 
-bindsym $mod+d exec "dmenu_run -fn 'Inconsolata,DejaVu Sans Mono'"
-bindsym $mod+Shift+d exec "dmenu_run_terminal -fn 'Inconsolata,DejaVu Sans Mono'"
+bindsym $mod+s exec "multimc"
+bindsym $mod+Shift+s exec "minecraft_launcher"
+
+bindsym $mod+d exec "dmenu_run -fn Consolas"
+bindsym $mod+Shift+d exec "dmenu_run_custom"
 
 bindsym $mod+f fullscreen toggle
 bindsym $mod+Shift+f gaps inner current set 0; gaps outer current set 0
@@ -216,15 +221,19 @@ bindsym $mod+Shift+g gaps inner current minus 5
 
 bindsym $mod+h focus left
 bindsym $mod+Shift+h move left 30 px
+bindsym $mod+Ctrl+h exec "move-window northwest 4"
 
 bindsym $mod+j focus down
 bindsym $mod+Shift+j move down 30 px
+bindsym $mod+Ctrl+j exec "move-window southwest 4"
 
 bindsym $mod+k focus up
 bindsym $mod+Shift+k move up 30 px
+bindsym $mod+Ctrl+k exec "move-window southeast 4"
 
 bindsym $mod+l focus right
 bindsym $mod+Shift+l move right 30 px
+bindsym $mod+Ctrl+l exec "move-window northeast 4"
 
 ## Bottom row ##
 
@@ -237,6 +246,7 @@ bindsym $mod+Shift+x gaps outer current minus 5
 
 bindsym $mod+c exec --no-startup-id "togglekb ipa"
 bindsym $mod+Shift+c exec --no-startup-id "togglekb intl"
+bindsym $mod+Ctrl+c exec --no-startup-id "togglekb special"
 
 bindsym $mod+v sticky toggle
 # bindsym $mod+Shift+v
@@ -259,3 +269,5 @@ bindsym $mod+Return exec $TERMINAL
 
 bindsym $mod+space focus mode_toggle
 
+# Switch back to workspacd 1
+exec --no-startup-id i3-msg 'workspace 1'

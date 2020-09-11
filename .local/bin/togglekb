@@ -15,6 +15,12 @@ elif [[ "$1" == "intl" ]]; then
 	else
 		setxkbmap -layout us -variant intl
 	fi
+elif [[ "$1" == "special" ]]; then
+	if [[ "$kblayout" = "special" ]]; then
+		setxkbmap -layout us
+	else
+		setxkbmap -layout special
+	fi
 else
 	setxkbmap -layout us
 fi

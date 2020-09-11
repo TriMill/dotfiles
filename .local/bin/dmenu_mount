@@ -15,14 +15,14 @@
 
 mountable=$(lsblk -lp | grep 'part $' | awk '{print $1, "(" $4 ")"}')
 [ "$mountable" = "" ] && exit 1
-chosen=$(echo "$mountable" | dmenu -i -p "Mount which drive?" -fn "Inconsolata,DejaVu Sans Mono" | awk '{print $1}')
+chosen=$(echo "$mountable" | dmenu -i -p "Mount which drive?" -fn "Consolas,DejaVu Sans Mono" | awk '{print $1}')
 [ "$chosen" = "" ] && exit 1
 sudo mount "$chosen" && exit 0
 dirs=$(find /mnt /media /home/tristanm/mnt -empty -type d -maxdepth 1 2>/dev/null)
-mountpoint=$(echo "$dirs" | sort | dmenu -i -p "Enter mount point:" -fn "Inconsolata,DejaVu Sans Mono")
+mountpoint=$(echo "$dirs" | sort | dmenu -i -p "Enter mount point:" -fn "Consolas,DejaVu Sans Mono")
 [ "$mountpoint" = "" ] && exit 1
 if [ ! -d "$mountpoint" ]; then
-	domkdir=$(/bin/echo -e "No\nYes" | dmenu -i -p "$mountpoint does not exist. Create it?" -fn "Inconsolata,DejaVu Sans Mono")
+	domkdir=$(/bin/echo -e "No\nYes" | dmenu -i -p "$mountpoint does not exist. Create it?" -fn "Consolas,DejaVu Sans Mono")
 	[ "$domkdir" = "Yes" ] || [ "$domkdir" = "y" ] && sudo mkdir -p "$mountpoint"
 fi
 sudo mount "$chosen" "$mountpoint" & pgrep -x dunst && notify-send "$chosen mounted to $mountpoint."

@@ -15,7 +15,7 @@
 drives=$(lsblk -lp | grep 't /' | grep -v "\(/boot\(/.*\)\?\|/home\|/\)$" | awk '{print $1, "(" $4 ")", "on", $7}')
 echo "$drives"
 [ "$drives" = "" ] && exit 1
-chosen=$(echo "$drives" | dmenu -i -p "Unmount which drive?" -fn "Inconsolata,DejaVu Sans Mono" | awk '{print $1}')
+chosen=$(echo "$drives" | dmenu -i -p "Unmount which drive?" -fn "Consolas,DejaVu Sans Mono" | awk '{print $1}')
 [ "$chosen" = "" ] && exit 1
 sudo umount "$chosen" && pgrep -x dunst && notify-send "$chosen unmounted."
 

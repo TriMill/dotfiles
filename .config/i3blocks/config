@@ -5,26 +5,26 @@ markup=pango
 separator=false
 separator_block_width=16
 
+[title]
+command=xdotool getactivewindow getwindowname
+interval=1
+min_width=1950
+full_text=Desktop
+
 [keybd]
 command=i3-keybd
-interval=1
+interval=5
 
 [separator]
 
 [rss]
 command=i3-rss
-interval=120
+interval=10
 
 [separator]
 
 [weather]
 command=i3-weather
-interval=120
-
-[separator]
-
-[network]
-command=i3-network
 interval=10
 
 [separator]
@@ -48,7 +48,7 @@ interval=5
 [separator]
 
 [date]
-command=date +"%Y-%m-%d"
+command=date +"%Y-%m-%d %a"
 interval=1
 
 [separator]

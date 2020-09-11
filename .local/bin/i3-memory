@@ -19,8 +19,8 @@ color="$I3C_GREEN"
 (greater "$used" "14") && color="$I3C_RED"
 
 color_swp="$I3C_GREEN"
-(greater "$used_swp" "4") && color_swp="$I3C_YELLOW"
-(greater "$used_swp" "6") && color_swp="$I3C_RED"
+(greater "$used_swp" "3") && color_swp="$I3C_YELLOW"
+(greater "$used_swp" "5.5") && color_swp="$I3C_RED"
 
 printf "<span color='%s'>%s</span>/<span color='%s'>%sGiB</span> \uF301 " "$color" "$used" "$I3C_BLUE" "$total"
 printf "<span color='%s'>%s</span>/<span color='%s'>%sGiB</span>\n" "$color_swp" "$used_swp" "$I3C_BLUE" "$total_swp"

@@ -1,30 +1,32 @@
 #!/bin/bash
 
 show-weather() {
-	[ -f "/tmp/weatherreport" ] || get-weather
-	$TERMINAL $SHELL -c 'cat /tmp/weatherreport; sleep infinity'
+    [ -f "$HOME/.local/share/weatherreport" ] || get-weather
+    [[ "$(wc -l "$HOME/.local/share/weatherreport")" < "30" ]] && get-weather
+    $TERMINAL "$SHELL" -c 'cat $HOME/.local/share/weatherreport; sleep infinity'
 }
 
 print-weather() {
-	[ -f "/tmp/weatherreport" ] || get-weather
-	# Extract temperatures
-	temps="$(sed '13q;d' < /tmp/weatherreport | grep -o "m\\(-+\\)*[0-9]\\+" | sort -n -t 'm' -k 2n | sed -e 1b -e '$!d' | sed 's/m//g; s/ /\n/g')"
+    [ -f "$HOME/.local/share/weatherreport" ] || get-weather
+    [[ "$(wc -l "$HOME/.local/share/weatherreport")" < "30" ]] && get-weather
+    # Extract temperatures
+    temps="$(sed '13q;d' < "$HOME/.local/share/weatherreport" | grep -o "m\\(-+\\)*[0-9]\\+" | sort -n -t 'm' -k 2n | sed -e 1b -e '$!d' | sed 's/m//g; s/ /\n/g')"
 
-	lo="$(echo "$temps" | head -n 1)"
-	hi="$(echo "$temps" | tail -n 1)"
+    lo="$(echo "$temps" | head -n 1)"
+    hi="$(echo "$temps" | tail -n 1)"
 
-	printf "\uF3B6 %s\u00B0F / %s\u00B0F\n" "$hi" "$lo"
+    printf "\uF3B6 %s\u00B0F / %s\u00B0F\n" "$hi" "$lo"
 }
 
 # Click action
 case $BLOCK_BUTTON in
-	1)	notify-send "Reloading weather data..."
-		get-weather && (
-			print-weather
-			notify-send "Loaded new weather data."
-		) || notify-send "Could not load weather data" ;;
-	3)	print-weather
-		show-weather
-		print-weather ;;
-	*)	print-weather ;;
+    1)	notify-send "Reloading weather data..."
+    	get-weather && (
+    		print-weather
+    		notify-send "Loaded new weather data."
+    	) || notify-send "Could not load weather data" ;;
+    3)	print-weather
+    	show-weather
+    	print-weather ;;
+    *)	print-weather ;;
 esac

@@ -5,15 +5,16 @@ let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
 let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
 set termguicolors
 
-let g:gruvbox_contrast_dark = 'hard'
-colo gruvbox_custom
+" OneDark modified to have 50% darker black
+colo onedark
 
 execute pathogen#infect()
 
-au FileType xhtml,xml so ~/.vim/ftplugin/html_autoclosetag.vim
-
 syntax on
 filetype plugin indent on
+autocmd BufWritePost * :e
+
+" settings
 set autoindent
 set hlsearch
 set tabstop=4
@@ -23,7 +24,12 @@ set encoding=utf-8
 set foldenable
 set foldlevelstart=8
 set foldmethod=indent
-autocmd BufWritePost * :e
+set laststatus=2
+set noshowmode
+
+let g:lightline = {
+	\ 'colorscheme': 'onedark',
+	\ }
 
 " Custom bindings for system copy-paste
 nmap <C-y> "+yy
@@ -47,8 +53,16 @@ inoremap <Down>		<Nop>
 inoremap <Left>		<Nop>
 inoremap <Right>	<Nop>
 
+" Run file from shell
+nnoremap <leader>r 		:w<CR> :!%:p<CR>
+
 " Universal compile script
-map <leader>c 		:!compile %<CR>
+nnoremap <leader>c 		:w<CR> :!compile %<CR>
+nnoremap <leader>x 		:w<CR> :!compile -x %<CR>
 
 " Map <leader><leader> to stop highlighting matches
 map <leader><leader> :noh<CR>
+
+" VimWiki bindings
+map <leader><CR>t :VimwikiTabnewLink<CR>
+map <leader><CR>s :VimwikiSplitLink<CR>

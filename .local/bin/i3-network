@@ -1,7 +1,7 @@
 #!/bin/bash
 
 print_available() {
-	if timeout 3s wget -q --spider "https://www.google.com/"; then
+	if timeout 5s wget -q --spider "https://www.google.com/"; then
 		ip=$(dig +short myip.opendns.com @resolver1.opendns.com)
 		printf "<span color='%s'>\\uF35C</span> %s\n" "$I3C_GREEN" "$ip"
 	else

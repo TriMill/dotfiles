@@ -8,5 +8,5 @@
 # Quickly open wikipedia pages
 
 page_name="$(echo "$@" | sed 's/ /_/g')"
-surf -z 2 "https://en.m.wikipedia.org/wiki/$page_name"
+qutebrowser "https://en.m.wikipedia.org/wiki/$page_name"
 

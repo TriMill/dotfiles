@@ -1,5 +1,6 @@
 #!/bin/sh
 
 wget -q --spider 'https://www.google.com' 2> /dev/null || exit 1
-curl -sf 'wttr.in/Stow,%20MA' > /tmp/weatherreport
-date +"%Y-%m-%d %H:%M:%S" >> /tmp/weatherreport
+wget -q --spider 'wttr.in' 2> /dev/null || ( notify-send "Error loading weather" && exit 1 )
+curl -sf 'wttr.in/Stow,%20MA' > "$HOME/.local/share/weatherreport"
+date +"%Y-%m-%d %H:%M:%S" >> "$HOME/.local/share/weatherreport"
