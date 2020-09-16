@@ -15,7 +15,6 @@ alias ll='ls -l'
 alias lla='ls -la'
 alias ldir='ls -la | grep ^d'
 alias mkd='mkdir -pv'
-alias r='ranger'
 alias iplocate='dig @resolver1.opendns.com ANY myip.opendns.com +short'
 
 # shortcuts
@@ -44,3 +43,5 @@ alias rebash='source ~/.bashrc'
 alias datetime='date +"%Y-%m-%d %I:%M:%S %p"'
 alias timestamp='date +"%Y-%m-%dT%H.%M.%S"'
 
+# dotfile repo
+alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles-git/ --work-tree=$HOME'

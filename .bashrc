@@ -17,20 +17,20 @@ if [ "${EUID}" == 0 ]; then
 	# If user is root
 	PS1=$(
 		style ps1 reset magenta; printf "[\\D{%%H:%%M}] "; 
-		style ps1 light red; printf "[\\\\u@\\h"; 
+		style ps1 light red; printf "[\\\\u:"; 
 		style ps1 light yellow; printf " \\W"; 
 		style ps1 light red; printf "]\\$";
-		style ps1 reset white; printf " \[";
+		style ps1 reset light white; printf " \[";
 		tput cnorm; printf "\]"
 	)
 else
 	# Else
 	PS1=$(
 		style ps1 reset magenta; printf "[\\D{%%H:%%M}] "; 
-		style ps1 light green; printf "[\\\\u@\\h"; 
-		style ps1 white; printf " \\W"; 
+		style ps1 light green; printf "[\\\\u:"; 
+		style ps1 light white; printf " \\W"; 
 		style ps1 light green; printf "]\\$";
-		style ps1 reset white; printf " \[";
+		style ps1 reset light white; printf " \[";
 		tput cnorm; printf "\]"
 	)
 fi
@@ -63,3 +63,4 @@ set -o vi
 todo=$(todo)
 [ "$todo" != "" ] && printf "TODO: \n" && todo
 
+source /home/tristanm/.config/broot/launcher/bash/br
