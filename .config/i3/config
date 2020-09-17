@@ -12,12 +12,12 @@ default_floating_border pixel 2
 
 # Window colors
 # class					border	bg		text	indic.	child_border
-client.focused			#5c6370	#14161a	#abb2bf	#61afef	#5c6370
-client.focused_inactive	#14161a	#14161a	#abb2bf	#14161a	#14161a
-client.unfocused		#14161a	#14161a	#abb2bf	#14161a	#14161a
-client.urgent			#e06c75	#e06c75	#abb2bf	#e06c75	#e06c75
-client.placeholder		#14161a	#14161a	#abb2bf	#14161a	#14161a
-client.background		#14161a	
+client.focused			#4f5059	#151617	#bbbfbc	#789ebf	#4f5059
+client.focused_inactive	#151617	#151617	#bbbfbc	#151617	#151617
+client.unfocused		#151617	#151617	#bbbfbc	#151617	#151617
+client.urgent			#cc5c5c	#cc5c5c	#bbbfbc	#cc5c5c	#cc5c5c
+client.placeholder		#151617	#151617	#bbbfbc	#151617	#151617
+client.background		#151617	
 
 #############
 #  Windows  #
@@ -31,8 +31,8 @@ exec --no-startup-id i3-msg 'workspace 9; exec "nice -n 10 /usr/bin/discord";'
 exec --no-startup-id i3-msg 'workspace 1;'
 
 # Dropdown windows
-exec --no-startup-id "$TERMINAL -n dropdown_term" 
-exec --no-startup-id "$TERMINAL -n dropdown_calc -e python3"
+exec --no-startup-id "$TERMINAL --class dropdown_term" 
+exec --no-startup-id "$TERMINAL --class dropdown_calc -e python3 -i -c \"from math import *; import random, sys; print('Python', sys.version)\""
 
 # Set up window parameters
 for_window [instance="dropdown_*"] floating enable
@@ -52,6 +52,7 @@ gaps outer 0
 # Open windows on specific workspace
 for_window [title="GIMP Startup"] move workspace $ws5
 for_window [class="Gimp"] move workspace $ws5
+for_window [title="Steam"] move workspace $ws6
 for_window [class="Thunderbird"] move workspace $ws8
 for_window [class="discord"] move workspace $ws9
 
@@ -104,15 +105,15 @@ bar {
 	position top
 	status_command i3blocks
 	colors {
-		background	#14161a
-		separator	#5c6370
-		statusline	#abb2bf
-		focused_workspace	#61afef	#14161A	#61afef
-		active_workspace	#61afef	#14161A	#61afef
-		inactive_workspace	#5c6370	#14161A	#5c6370
-		urgent_workspace	#e06c75	#14161A	#e06c75
+		background	#151617
+		separator	#4f5059
+		statusline	#bbbfbc
+		focused_workspace	#789ebf	#151617	#789ebf
+		active_workspace	#789ebf	#151617	#789ebf
+		inactive_workspace	#4f5059	#151617	#4f5059
+		urgent_workspace	#cc5c5c	#151617	#cc5c5c
 	}
-	i3bar_command "i3blocks | i3bar -t"
+	#i3bar_command "i3blocks | i3bar"
 }
 
 #################
@@ -176,7 +177,7 @@ bindsym $mod+Shift+q [con_id="__focused__"] kill
 bindsym $mod+Ctrl+q exec "kill -9 $(xdotool getactivewindow getwindowpid)"
 
 bindsym $mod+w exec $BROWSER
-# bindsym $mod+Shift+w
+bindsym $mod+Shift+w exec chromium
 
 bindsym $mod+e layout toggle split
 bindsym $mod+Shift+e gaps inner current set 15; gaps outer current set 0
@@ -210,8 +211,8 @@ bindsym $mod+Shift+a focus child
 bindsym $mod+s exec "multimc"
 bindsym $mod+Shift+s exec "minecraft_launcher"
 
-bindsym $mod+d exec "dmenu_run -fn Consolas"
-bindsym $mod+Shift+d exec "dmenu_run_custom"
+bindsym $mod+d exec "dmenu_run -p 'Run:' -fn 'Inconsolata'"
+bindsym $mod+Shift+d exec "dmenu_editconfig"
 
 bindsym $mod+f fullscreen toggle
 bindsym $mod+Shift+f gaps inner current set 0; gaps outer current set 0
@@ -221,19 +222,15 @@ bindsym $mod+Shift+g gaps inner current minus 5
 
 bindsym $mod+h focus left
 bindsym $mod+Shift+h move left 30 px
-bindsym $mod+Ctrl+h exec "move-window northwest 4"
 
 bindsym $mod+j focus down
 bindsym $mod+Shift+j move down 30 px
-bindsym $mod+Ctrl+j exec "move-window southwest 4"
 
 bindsym $mod+k focus up
 bindsym $mod+Shift+k move up 30 px
-bindsym $mod+Ctrl+k exec "move-window southeast 4"
 
 bindsym $mod+l focus right
 bindsym $mod+Shift+l move right 30 px
-bindsym $mod+Ctrl+l exec "move-window northeast 4"
 
 ## Bottom row ##
 
@@ -254,8 +251,8 @@ bindsym $mod+v sticky toggle
 bindsym $mod+b floating toggle
 # bindsym $mod+Shift+b
 
-# bindsym $mod+n
-# bindsym $mod+Shift+n
+bindsym $mod+n exec "screenshot screen"
+bindsym $mod+Shift+n exec "screenshot sel"
 
 bindsym $mod+m exec "redshift -O 4000"
 bindsym $mod+Shift+m exec "redshift -x" 

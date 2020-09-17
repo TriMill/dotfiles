@@ -1,0 +1,9 @@
+i3wm	$HOME/.config/i3/config
+i3blocks	$HOME/.config/i3blocks/config
+bashrc	$HOME/.bashrc
+bash_aliases	$HOME/.bash_aliases
+profile	$HOME/.profile
+alacritty	$HOME/.config/alacritty/alacritty.yml
+nvim	$HOME/.config/nvim/init.vim
+config-list	$HOME/.local/bin/configs.txt
+picom	$HOME/.config/picom/picom.conf

@@ -6,8 +6,8 @@ separator=false
 separator_block_width=16
 
 [title]
-command=xdotool getactivewindow getwindowname
-interval=1
+command=i3-window-title
+interval=persist
 min_width=1950
 full_text=Desktop
 
