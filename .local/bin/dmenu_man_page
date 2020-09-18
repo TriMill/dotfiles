@@ -1,0 +1,3 @@
+#!/bin/bash
+choice="$(man -k . | sort | dmenu -l 20 -fn "Inconsolata-11"  | awk '{print $1}')"
+[ "$choice" ] && $TERMINAL -e man "$choice"

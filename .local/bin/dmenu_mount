@@ -15,14 +15,14 @@
 
 mountable=$(lsblk -lp | grep 'part $' | awk '{print $1, "(" $4 ")"}')
 [ "$mountable" = "" ] && exit 1
-chosen=$(echo "$mountable" | dmenu -i -p "Mount which drive?" -fn "Inconsolata" | awk '{print $1}')
+chosen=$(echo "$mountable" | dmenu -i -p "Mount which drive?" -fn "Inconsolata-11" | awk '{print $1}')
 [ "$chosen" = "" ] && exit 1
 sudo mount "$chosen" && exit 0
 dirs=$(find /mnt /media /home/tristanm/mnt -empty -type d -maxdepth 1 2>/dev/null)
-mountpoint=$(echo "$dirs" | sort | dmenu -i -p "Enter mount point:" -fn "Inconsolata")
+mountpoint=$(echo "$dirs" | sort | dmenu -i -p "Enter mount point:" -fn "Inconsolata-11")
 [ "$mountpoint" = "" ] && exit 1
 if [ ! -d "$mountpoint" ]; then
-	domkdir=$(/bin/echo -e "No\nYes" | dmenu -i -p "$mountpoint does not exist. Create it?" -fn "Inconsolata")
+	domkdir=$(/bin/echo -e "No\nYes" | dmenu -i -p "$mountpoint does not exist. Create it?" -fn "Inconsolata-11")
 	[ "$domkdir" = "Yes" ] || [ "$domkdir" = "y" ] && sudo mkdir -p "$mountpoint"
 fi
 sudo mount "$chosen" "$mountpoint" & pgrep -x dunst && notify-send "$chosen mounted to $mountpoint."

@@ -12,12 +12,13 @@ alias ccat='highlight --out-format=ansi'
 # shorten commands
 alias ls='ls -hN --color=auto --group-directories-first'
 alias ll='ls -l'
-alias lla='ls -la'
+alias lla='ls -lA'
 alias ldir='ls -la | grep ^d'
 alias mkd='mkdir -pv'
 alias iplocate='dig @resolver1.opendns.com ANY myip.opendns.com +short'
 
 # shortcuts
+alias ..='cd ..'
 alias conf='cd ~/.config'
 alias docs='cd ~/documents'
 alias bin='cd ~/.local/bin'
@@ -25,7 +26,7 @@ alias v-i3='nvim ~/.config/i3/config'
 alias v-i3b='nvim ~/.config/i3blocks/config'
 alias v-ba='nvim ~/.bash_aliases'
 alias v-brc='nvim ~/.bashrc'
-alias v-nv='nvim ~/.config/nvim/init/vim'
+alias v-nv='nvim ~/.config/nvim/init.vim'
 alias v-pr='nvim ~/.profile'
 
 # pacman tools
@@ -44,4 +45,14 @@ alias datetime='date +"%Y-%m-%d %I:%M:%S %p"'
 alias timestamp='date +"%Y-%m-%dT%H.%M.%S"'
 
 # dotfile repo
-alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles-git/ --work-tree=$HOME'
+alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+
+# git commands
+alias g='git'
+alias gs='git status'
+alias gadd='git add'
+alias grm='git rm'
+alias gcommit='git commit'
+alias gpush='git push'
+alias ghelp='git --help'
+alias gclone='git clone'

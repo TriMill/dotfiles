@@ -6,8 +6,7 @@ print_unread() {
 }
 
 case "$BLOCK_BUTTON" in
-	1)	notify-send "Reloading RSS..."
-		newsboat -x reload
+	1)	newsboat -x reload
 		notify-send "Reloaded RSS."
 		print_unread ;;
 	3)	($TERMINAL -e newsboat) & print_unread ;;

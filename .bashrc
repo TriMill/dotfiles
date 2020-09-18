@@ -3,9 +3,6 @@
 # ~/.bashrc
 #
 
-# Set environment variables
-export LC_ALL="en_US.UTF-8"
-
 [[ $- != *i* ]] && return # Exit if shell is not interactive
 
 [ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion # Run bash-completion script if it exists

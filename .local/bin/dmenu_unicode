@@ -18,7 +18,7 @@
 #	000B5    µ    MICRO SIGN
 #	1F603    😃    SMILING FACE WITH OPEN MOUTH
 
-sel="$(dmenu -i -l 20 -fn 'Inconsolata,DejaVu Sans Mono,Symbola-10' < "$HOME/.local/bin/unicode_list" )"
+sel="$(dmenu -i -l 20 -fn 'Inconsolata,DejaVu Sans Mono,Symbola-11' < "$HOME/.local/bin/unicode_list" )"
 
 if [ "$sel" != "" ]; then
 	char="$(echo "$sel" | sed -r 's/[0-9A-Fa-f]+    |    .+//g')"

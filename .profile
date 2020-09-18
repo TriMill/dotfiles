@@ -12,6 +12,7 @@ export FILE="/usr/bin/thunar"
 export TERMINAL="/usr/bin/alacritty"
 export BROWSER="/usr/bin/firefox"
 export TUIR_BROWSER="/usr/bin/qutebrowser"
+export LC_ALL="en_US.UTF-8"
 
 ## Colors ##
 export I3C_BLACK="#1f2124"
@@ -35,3 +36,6 @@ export WINEPREFIX="$HOME/.config/wine"
 # Load bashrc
 [ -f "$HOME/.bashrc" ] && . $HOME/.bashrc
 
+if [ "$(tty)" = "/dev/tty1" ]; then
+	exec startx
+fi

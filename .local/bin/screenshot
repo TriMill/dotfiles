@@ -3,11 +3,11 @@
 timestamp="$(date +"%Y-%m-%dT%H.%M.%S")"
 
 if [[ "$1" == "screen" ]]; then
-	scrot ~/screenshots/$timestamp.png
+	escrotum ~/screenshots/$timestamp.png
 	return="$?"
 elif [[ "$1" == "sel" ]]; then
-	sleep 0.2;
-	scrot -l style=solid,width=2 -s ~/screenshots/$timestamp.png
+	#sleep 0.2;
+	escrotum -s ~/screenshots/$timestamp.png
 	return="$?"
 else
 	echo "Invalid parameter $1."
@@ -18,7 +18,7 @@ echo "$return"
 
 if [[ "$return" == "0" ]]; then
 	notify-send "Screenshot saved as $timestamp.png."
-elif [[ "$return" == "2" ]]; then
+elif [[ "$return" == "4" ]]; then
 	notify-send "Screenshot canceled."
 else
 	notify-send "Error taking screenshot."

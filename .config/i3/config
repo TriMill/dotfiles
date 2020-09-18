@@ -134,7 +134,7 @@ bindsym XF86MonBrightnessDown exec "xbacklight -dec 5"
 
 bindsym $mod+Escape mode $mode_system
 
-# bindsym $mod+F1
+bindsym $mod+F1 exec dmenu_man_page
 # bindsym $mod+F2
 # bindsym $mod+F3
 # bindsym $mod+F4
@@ -186,7 +186,7 @@ bindsym $mod+r exec $FILE
 bindsym $mod+Shift+r exec $TERMINAL -e tuir
 
 bindsym $mod+t split toggle
-# bindsym $mod+Shift+t
+bindsym $mod+Shift+t exec "$TERMINAL -e htop"
 
 bindsym $mod+y [instance="dropdown_term"] scratchpad show; [instance="dropdown_term"] move position center
 bindsym $mod+Shift+y resize shrink width 5 px or 5 ppt
@@ -200,8 +200,8 @@ bindsym $mod+Shift+i resize shrink height 5 px or 5 ppt
 # bindsym $mod+o
 bindsym $mod+Shift+o resize grow width 5 px or 5 ppt
 
-bindsym $mod+p exec $TERMINAL -e htop
-# bindsym $mod+Shift+p
+# bindsym $mod+p
+# bindsym $mod+Shift+p 
 
 ## Home row ##
 
@@ -211,7 +211,7 @@ bindsym $mod+Shift+a focus child
 bindsym $mod+s exec "multimc"
 bindsym $mod+Shift+s exec "minecraft_launcher"
 
-bindsym $mod+d exec "dmenu_run -p 'Run:' -fn 'Inconsolata'"
+bindsym $mod+d exec "dmenu_run -p 'Run:' -fn 'Inconsolata-11'"
 bindsym $mod+Shift+d exec "dmenu_editconfig"
 
 bindsym $mod+f fullscreen toggle
@@ -251,8 +251,8 @@ bindsym $mod+v sticky toggle
 bindsym $mod+b floating toggle
 # bindsym $mod+Shift+b
 
-bindsym $mod+n exec "screenshot screen"
-bindsym $mod+Shift+n exec "screenshot sel"
+# bindsym $mod+n
+# bindsym $mod+Shift+n
 
 bindsym $mod+m exec "redshift -O 4000"
 bindsym $mod+Shift+m exec "redshift -x" 
@@ -265,6 +265,9 @@ bindsym $mod+Shift+Tab workspace prev_on_output
 bindsym $mod+Return exec $TERMINAL
 
 bindsym $mod+space focus mode_toggle
+
+bindsym $mod+Print exec "screenshot screen"
+bindsym $mod+Shift+Print exec "screenshot sel"
 
 # Switch back to workspacd 1
 exec --no-startup-id i3-msg 'workspace 1'

@@ -3,7 +3,7 @@
 show-weather() {
     [ -f "$HOME/.local/share/weatherreport" ] || get-weather
     [[ "$(wc -l "$HOME/.local/share/weatherreport")" < "30" ]] && get-weather
-    $TERMINAL "$SHELL" -c 'cat $HOME/.local/share/weatherreport; sleep infinity'
+    $TERMINAL -e "$SHELL" -c 'cat $HOME/.local/share/weatherreport; sleep infinity'
 }
 
 print-weather() {
@@ -20,8 +20,7 @@ print-weather() {
 
 # Click action
 case $BLOCK_BUTTON in
-    1)	notify-send "Reloading weather data..."
-    	get-weather && (
+    1)	get-weather && (
     		print-weather
     		notify-send "Loaded new weather data."
     	) || notify-send "Could not load weather data" ;;

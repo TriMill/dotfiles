@@ -1,5 +1,5 @@
 #!/bin/bash
-choice="$(awk -F '	' '{print $1}' ~/.local/bin/configs.txt | dmenu -p "Edit:" -i -fn 'Inconsolata')"
+choice="$(awk -F '	' '{print $1}' ~/.local/bin/configs.txt | dmenu -p "Edit:" -i -fn 'Inconsolata-11')"
 [ -z "$choice" ] && exit 0
 
 filename=$(grep "^$choice" ~/.local/bin/configs.txt | head -n 1 | awk -F '	' '{print $2}')
