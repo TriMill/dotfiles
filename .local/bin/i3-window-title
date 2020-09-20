@@ -1,4 +1,11 @@
 #!/bin/bash
+
+# REQUIRES:
+#	i3
+#	xdotool
+#	coreutils
+#	bash
+
 max_len=80
 i3-msg -t subscribe -m '["window","workspace"]' | while read line
 do 

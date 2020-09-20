@@ -9,6 +9,7 @@
 #	findutils
 #	libnotify
 #	dmenu
+#	$HOME
 
 # Modified from Luke Smith's program (https://github.com/LukeSmithxyz/voidrice)
 # Edit your sudoers file to make sure you can run 'sudo mount' without entering a password
@@ -18,7 +19,7 @@ mountable=$(lsblk -lp | grep 'part $' | awk '{print $1, "(" $4 ")"}')
 chosen=$(echo "$mountable" | dmenu -i -p "Mount which drive?" -fn "Inconsolata-11" | awk '{print $1}')
 [ "$chosen" = "" ] && exit 1
 sudo mount "$chosen" && exit 0
-dirs=$(find /mnt /media /home/tristanm/mnt -empty -type d -maxdepth 1 2>/dev/null)
+dirs=$(find /mnt /media $HOME/mnt -empty -type d -maxdepth 1 2>/dev/null)
 mountpoint=$(echo "$dirs" | sort | dmenu -i -p "Enter mount point:" -fn "Inconsolata-11")
 [ "$mountpoint" = "" ] && exit 1
 if [ ! -d "$mountpoint" ]; then

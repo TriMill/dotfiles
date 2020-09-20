@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# REQUIRES:
+#	bash
+#	coreutils
+#	openssl
+#	$HOME
+
 set -e
 BASENAME="$(basename "$0")"
 VERSION="0.1.0"

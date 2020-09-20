@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# REQUIRES:
+#	sh
+#	coreutils
+#	xwallpaper
+#	findutils
+#
+name=$(find ~/pictures/wallpapers -type f | shuf -n 1)
+xwallpaper --zoom $name
+echo "$name"

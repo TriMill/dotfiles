@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# REQUIRES:
+#	sh
+#	coreutils
+#	$TERMINAL
+#	$EDITOR
+
+$TERMINAL -e $EDITOR $@

@@ -1,5 +1,13 @@
 #!/bin/sh
 
+# REQUIRES:
+#	wget
+#	curl
+#	sh
+#	coreutils
+#	libnotify
+#	$HOME
+
 wget -q --spider 'https://www.google.com' 2> /dev/null || exit 1
 wget -q --spider 'wttr.in' 2> /dev/null || ( notify-send "Error loading weather" && exit 1 )
 curl -sf 'wttr.in/Stow,%20MA' > "$HOME/.local/share/weatherreport"

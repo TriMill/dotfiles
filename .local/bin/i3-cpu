@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# REQUIRES:
+#	bash
+#	coreutils
+#	lm_sensors
+#	bc
+#	$I3C_GREEN
+#	$I3C_YELLOW
+#	$I3C_RED
+
 greater() {
 	(( $(echo "$1 > $2" | bc -l) ))
 }

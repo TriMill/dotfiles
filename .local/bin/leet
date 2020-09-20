@@ -1,4 +1,8 @@
-#!/bin/bash
+#!/bin/sh
+
+# REQUIRES
+#	sh
+#	coreutils
 
 echo "$@" | sed '
 s/\bthe\b/t3h/g;

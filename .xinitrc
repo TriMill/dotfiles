@@ -21,6 +21,6 @@ xset r rate 600 25 &
 xrandr --dpi 196 &
 xbacklight -set 60 &
 picom -b &
-xwallpaper --zoom $(find ~/pictures/wallpaper -type f | shuf -n 1) &
+rand-wallpaper &
 nm-applet &
 exec i3

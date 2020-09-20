@@ -1,5 +1,15 @@
 #!/bin/bash
 
+# REQUIRES:
+#	coreutils
+#	bash
+#	procps-ng
+#	bc
+#	$I3C_GREEN
+#	$I3C_YELLOW
+#	$I3C_RED
+#	$I3C_BLUE
+
 round() {
 	awk "BEGIN {rounded = sprintf(\"%.2f\", $1/$2); print rounded}"
 }

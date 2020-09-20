@@ -5,6 +5,9 @@
 #	coreutils
 #	acpi
 #	acpid
+#	$I3C_GREEN
+#	$I3C_YELLOW
+#	$I3C_RED
 
 # You may need to replace "Battery 1" with "Battery 0" or another battery number
 

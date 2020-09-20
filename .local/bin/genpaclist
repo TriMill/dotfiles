@@ -1,5 +1,12 @@
 #!/bin/sh
 
+# REQUIRES:
+#	coreutils
+#	sh
+#	pacman
+#	diffutils
+#	$HOME
+
 filename="$HOME/.local/share/packagelist"
 if [ ! -f "$filename" ]; then
 	printf "%s does not exist. Create it? [Y/n] " "$filename"

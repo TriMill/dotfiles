@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# REQUIRES:
+#	xorg-setxkbmap
+#	coreutils
+#	bash
+
 kblayout="$(setxkbmap -query | awk '/layout/{print $2}')"
 kbvariant="$(setxkbmap -query | awk '/variant/{print $2}')"
 

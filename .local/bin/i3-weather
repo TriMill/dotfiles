@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# REQUIRES:
+#	bash
+#	coreutils
+#	libnotify
+#	$HOME
+#	$TERMINAL
+#	$SHELL
+
 show-weather() {
     [ -f "$HOME/.local/share/weatherreport" ] || get-weather
     [[ "$(wc -l "$HOME/.local/share/weatherreport")" < "30" ]] && get-weather

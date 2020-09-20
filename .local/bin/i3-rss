@@ -1,4 +1,11 @@
-#!/bin/sh
+#!/bin/bash
+
+# REQUIRES:
+#	coreutils
+#	bash
+#	newsboat
+#	libnotify
+#	$I3C_ORANGE
 
 print_unread() {
 	count="$(newsboat -x print-unread | awk '{print $1}')"

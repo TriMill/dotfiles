@@ -6,6 +6,7 @@
 #	libnotify
 #	xsel
 #	dmenu
+#	$HOME
 
 # '$HOME/.local/bin/unicode_list' must be a list of unicode characters in the following format:
 # 	UUUUU____C____NAME

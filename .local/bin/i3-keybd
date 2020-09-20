@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# REQUIRES:
+#	bash
+#	coreutils
+#	setxkbmap
+
 layout="$(setxkbmap -query | awk '/layout/{print $2}' | tr "[:lower:]" "[:upper:]")"
 variant="$(setxkbmap -query | awk '/variant/{print $2}' | tr "[:lower:]" "[:upper:]")"
 [[ "$variant" == "" ]] && variant="$layout"

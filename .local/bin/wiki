@@ -3,7 +3,7 @@
 # REQUIRES:
 #	sh
 #	coreutils
-#	surf
+#	qutebrowser
 
 # Quickly open wikipedia pages
 

@@ -1,5 +1,12 @@
 #!/bin/bash
+
+# REQUIRES:
+#	coreutils
+#	bash
+#	$HOME
+
 # todo: simple todo script
+
 todo_file="$HOME/.local/share/todo"
 if [[ ! -f "$todo_file" ]]; then
 	touch "$todo_file"
