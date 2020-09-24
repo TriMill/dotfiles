@@ -6,11 +6,12 @@
 #	coreutils
 #	bash
 
-max_len=80
+max_len=100
 i3-msg -t subscribe -m '["window","workspace"]' | while read line
 do 
 	name="$(xdotool getactivewindow getwindowname)"
 	[ $? = 1 ] && name="Desktop"
 	[ "${#name}" -gt $max_len ] && name="$(echo "$name" | cut -c -$max_len)""..."
+	name="$(echo "$name" | iconv -c)"
 	echo "$name"
 done

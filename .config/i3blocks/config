@@ -1,15 +1,14 @@
-full_text=⟨
+full_text=|
 align=center
-separator_block_width=40
+separator_block_width=20
 markup=pango
 separator=false
-separator_block_width=16
 
 [title]
 command=i3-window-title
 markup=none
 interval=persist
-min_width=1950
+min_width=1850
 full_text=Desktop
 
 [keybd]
@@ -55,5 +54,7 @@ interval=1
 [separator]
 
 [time]
-command=date +"%I:%M %p "
+command=date +"%I:%M %p"
 interval=1
+
+[separator]

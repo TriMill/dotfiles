@@ -56,3 +56,7 @@ alias gcommit='git commit'
 alias gpush='git push'
 alias ghelp='git --help'
 alias gclone='git clone'
+
+# youtube-dl
+alias ytdl="youtube-dl -f bestvideo+bestaudio"
+alias ytdl-a="youtube-dl --extract-audio --audio-format=mp3"

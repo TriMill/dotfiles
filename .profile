@@ -33,6 +33,12 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CONFIG_HOME="$HOME/.config"
 export WINEPREFIX="$HOME/.config/wine"
 
+## Enable libnotify from cron ##
+touch $HOME/.local/share/Xdbus
+chmod 600 $HOME/.local/share/Xdbus
+env | grep DBUS_SESSION_BUS_ADDRESS > $HOME/.local/share/Xdbus
+echo 'export DBUS_SESSION_BUS_ADDRESS' >> $HOME/.local/share/Xdbus
+
 # Load bashrc
 [ -f "$HOME/.bashrc" ] && . $HOME/.bashrc
 
