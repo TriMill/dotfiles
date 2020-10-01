@@ -24,8 +24,6 @@ client.background		#151617
 #############
 
 # Startup programs
-exec --no-startup-id "i3-battery-popup -n -t 30s"
-
 exec --no-startup-id i3-msg 'workspace 9; exec "nice -n 10 /usr/bin/discord";'
 exec --no-startup-id i3-msg 'workspace 1;'
 

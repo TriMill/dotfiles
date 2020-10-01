@@ -7,7 +7,7 @@
 
 [ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion # Run bash-completion script if it exists
 
-[ -r "$HOME/.bash_aliases" ] && . "$HOME/.bash_aliases" # Inject aliases from separate alias file
+[ -r "$HOME/.aliases" ] && . "$HOME/.aliases" # Inject aliases from separate alias file
 
 # Set prompt
 if [ "${EUID}" == 0 ]; then

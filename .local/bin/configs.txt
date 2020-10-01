@@ -1,5 +1,5 @@
 alacritty	$HOME/.config/alacritty/alacritty.yml
-bash_aliases	$HOME/.bash_aliases
+aliases	$HOME/.aliases
 bashrc	$HOME/.bashrc
 config-list	$HOME/.local/bin/configs.txt
 i3blocks	$HOME/.config/i3blocks/config
@@ -8,3 +8,4 @@ nvim	$HOME/.config/nvim/init.vim
 picom	$HOME/.config/picom/picom.conf
 profile	$HOME/.profile
 xinitrc	$HOME/.xinitrc
+zshrc	$HOME/.config/zsh/.zshrc

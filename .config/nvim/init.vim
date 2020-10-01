@@ -12,6 +12,7 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 autocmd BufWritePost * :e
+autocmd BufNewFile,BufRead,BufWritePost *.zsh-theme set syntax=zsh
 
 " settings
 set autoindent
@@ -33,10 +34,33 @@ let g:lightline = {
 " Custom bindings for system copy-paste
 nmap <C-y> "+yy
 nmap <C-x> "+cc
-nmap <C-p> "+P
+nmap <C-p> "+p
 vmap <C-y> "+y
 vmap <C-x> "+c
-vmap <C-p> "+P
+vmap <C-p> "+p
+
+" Switching tabs
+nmap <A-TAB> :tabedit 
+nmap <A-1> 1gt
+nmap <A-2> 2gt
+nmap <A-3> 3gt
+nmap <A-4> 4gt
+nmap <A-5> 5gt
+nmap <A-6> 6gt
+nmap <A-7> 7gt
+nmap <A-8> 8gt
+nmap <A-9> 9gt
+nmap <A-0> 10gt
+nmap H gT
+nmap L gt
+
+" Split navigation
+set splitbelow
+set splitright
+nmap <A-h> <C-w>h
+nmap <A-j> <C-w>j
+nmap <A-k> <C-w>k
+nmap <A-l> <C-w>l
 
 " hexHighlight plugin
 nmap <leader>h		<Plug>ToggleHexHighlight
@@ -55,9 +79,9 @@ inoremap <Right>	<Nop>
 " Run file from shell
 nnoremap <leader>r 		:w<CR> :!%:p<CR>
 
-" Universal compile script
-nnoremap <leader>c 		:w<CR> :!compile %<CR>
-nnoremap <leader>x 		:w<CR> :!compile -x %<CR>
+" Make or make+execute
+nnoremap <leader>m 		:w<CR> :make<CR>
+nnoremap <leader>x 		:w<CR> :make%<CR> :!./%:r<CR>
 
 " Map <leader><leader> to stop highlighting matches
 map <leader><leader> :noh<CR>

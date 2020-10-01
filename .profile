@@ -13,6 +13,7 @@ export TERMINAL="/usr/bin/alacritty"
 export BROWSER="/usr/bin/firefox"
 export TUIR_BROWSER="/usr/bin/qutebrowser"
 export LC_ALL="en_US.UTF-8"
+export LANG="en_US.UTF-8"
 
 ## Colors ##
 export I3C_BLACK="#1f2124"
@@ -39,8 +40,8 @@ chmod 600 $HOME/.local/share/Xdbus
 env | grep DBUS_SESSION_BUS_ADDRESS > $HOME/.local/share/Xdbus
 echo 'export DBUS_SESSION_BUS_ADDRESS' >> $HOME/.local/share/Xdbus
 
-# Load bashrc
-[ -f "$HOME/.bashrc" ] && . $HOME/.bashrc
+# Load zshrc
+[ -f "$ZDOTDIR/.zshrc" ] && . $ZDOTDIR/.zshrc
 
 if [ "$(tty)" = "/dev/tty1" ]; then
 	exec startx

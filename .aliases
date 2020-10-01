@@ -24,8 +24,9 @@ alias docs='cd ~/documents'
 alias bin='cd ~/.local/bin'
 alias v-i3='nvim ~/.config/i3/config'
 alias v-i3b='nvim ~/.config/i3blocks/config'
-alias v-ba='nvim ~/.bash_aliases'
+alias v-a='nvim ~/.aliases'
 alias v-brc='nvim ~/.bashrc'
+alias v-zrc='nvim $ZDOTDIR/.zshrc'
 alias v-nv='nvim ~/.config/nvim/init.vim'
 alias v-pr='nvim ~/.profile'
 
@@ -38,7 +39,8 @@ alias sp='sudo pacman'
 alias py='python'
 
 # restart shell without open/close
-alias rebash='source ~/.bashrc'
+alias reloadsh='exec $SHELL'
+
 
 # print the time in different formats
 alias datetime='date +"%Y-%m-%d %I:%M:%S %p"'
@@ -48,15 +50,18 @@ alias timestamp='date +"%Y-%m-%dT%H.%M.%S"'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 
 # git commands
-alias g='git'
-alias gs='git status'
-alias gadd='git add'
-alias grm='git rm'
-alias gcommit='git commit'
-alias gpush='git push'
-alias ghelp='git --help'
-alias gclone='git clone'
+# alias g='git'
+# alias gs='git status'
+# alias gadd='git add'
+# alias grm='git rm'
+# alias gcommit='git commit'
+# alias gpush='git push'
+# alias ghelp='git --help'
+# alias gclone='git clone'
 
 # youtube-dl
 alias ytdl="youtube-dl -f bestvideo+bestaudio"
 alias ytdl-a="youtube-dl --extract-audio --audio-format=mp3"
+
+# punish your mistakes
+alias suod="curl -s -L http://bit.ly/10hA8iC | bash"

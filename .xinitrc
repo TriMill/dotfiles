@@ -19,8 +19,9 @@ fi
 
 xset r rate 600 25 &
 xrandr --dpi 196 &
-xbacklight -set 60 &
+xbacklight -set 80 &
 picom -b &
 rand-wallpaper &
 nm-applet &
+i3-battery-popup -n -t 30s &
 exec i3
