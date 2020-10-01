@@ -6,7 +6,7 @@
 autoload -Uz compinit && compinit
 zmodload zsh/zprof
 
-[ -r "$ZDOTDIR/aliases" ] && source "$ZDOTDIR/aliases"
+[ -r "$ZDOTDIR/.aliases" ] && source "$ZDOTDIR/.aliases"
 
 HISTSIZE=10000
 SAVEHIST=10000

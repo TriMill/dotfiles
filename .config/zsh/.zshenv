@@ -1,1 +1,1 @@
-/home/tristanm/.profile
+.zprofile
