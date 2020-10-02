@@ -7,10 +7,11 @@
 #	coreutils
 #	libnotify
 #	$HOME
+#	$LOCATION
 
 [ -e "$HOME/.local/share/Xdbus" ] && . "$HOME/.local/share/Xdbus"
 
 wget -q --spider 'https://www.google.com' 2> /dev/null || exit 1
 wget -q --spider 'wttr.in' 2> /dev/null || ( notify-send -u critical "Error loading weather" && exit 1 )
-curl -sf 'wttr.in/Stow,%20MA' > "$HOME/.local/share/weatherreport"
+curl -sf 'wttr.in/'"$LOCATION" > "$HOME/.local/share/weatherreport"
 date +"%Y-%m-%d %H:%M:%S" >> "$HOME/.local/share/weatherreport"
