@@ -93,6 +93,11 @@ mode $mode_system {
 	bindsym $mod+Escape mode "default"
 }
 
+set $mode_unbind "i3 keybinds disabled, press [esc] to restore"
+mode $mode_unbind {
+	bindsym Escape mode "default"
+}
+
 ###########
 #  i3bar  #
 ###########
@@ -135,6 +140,7 @@ bindsym Shift+Print exec "screenshot sel"
 # Function keys ##
 
 bindsym $mod+Escape mode $mode_system
+bindsym $mod+Shift+Escape mode $mode_unbind
 
 bindsym $mod+F1 exec dmenu_man_page
 # bindsym $mod+F2
@@ -185,7 +191,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+e gaps inner current set 15; gaps outer current set 0
 
 bindsym $mod+r exec $FILE
-bindsym $mod+Shift+r exec $TERMINAL -e tuir
+# bindsym $mod+Shift+r
 
 bindsym $mod+t split toggle
 bindsym $mod+Shift+t exec "$TERMINAL -e htop"
@@ -211,7 +217,7 @@ bindsym $mod+a focus parent
 bindsym $mod+Shift+a focus child
 
 bindsym $mod+s exec "multimc"
-bindsym $mod+Shift+s exec "minecraft_launcher"
+bindsym $mod+Shift+s exec "minecraft-launcher"
 
 bindsym $mod+d exec "dmenu_run -p 'Run:' -fn 'Inconsolata-11'"
 bindsym $mod+Shift+d exec "dmenu_editconfig"
@@ -265,6 +271,7 @@ bindsym $mod+Tab workspace next_on_output
 bindsym $mod+Shift+Tab workspace prev_on_output
 
 bindsym $mod+Return exec $TERMINAL
+bindsym $mod+Shift+Return exec $TERMINAL -e nvim
 
 bindsym $mod+space focus mode_toggle
 

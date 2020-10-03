@@ -5,7 +5,6 @@ amidst-beta
 bc
 bind
 bleachbit
-broot
 bzip2
 chromium
 cmatrix
@@ -21,6 +20,7 @@ dunst
 escrotum
 feh
 ffmpeg
+figlet
 findutils
 firefox
 firefox
@@ -54,6 +54,7 @@ noto-fonts
 openssl
 otf-inconsolata-dz
 p7zip
+pcmanfm
 picom
 processing
 pulseaudio-ctl
@@ -68,7 +69,6 @@ sxiv
 tar
 texlive-bin
 texlive-core
-thunar
 ttf-droid
 ttf-font-icons
 ttf-liberation

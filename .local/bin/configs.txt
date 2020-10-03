@@ -1,6 +1,5 @@
 alacritty	$HOME/.config/alacritty/alacritty.yml
 aliases	$HOME/.aliases
-bashrc	$HOME/.bashrc
 config-list	$HOME/.local/bin/configs.txt
 i3blocks	$HOME/.config/i3blocks/config
 i3wm	$HOME/.config/i3/config

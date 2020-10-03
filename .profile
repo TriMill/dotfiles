@@ -8,7 +8,7 @@ export VISUAL="/usr/bin/nvim"
 export DIFFPROG="/usr/bin/nvim"
 export PAGER="/usr/bin/less"
 export VIEWER="/usr/bin/zathura"
-export FILE="/usr/bin/thunar"
+export FILE="/usr/bin/pcmanfm"
 export TERMINAL="/usr/bin/alacritty"
 export BROWSER="/usr/bin/firefox"
 export TUIR_BROWSER="/usr/bin/qutebrowser"
@@ -39,9 +39,6 @@ touch $HOME/.local/share/Xdbus
 chmod 600 $HOME/.local/share/Xdbus
 env | grep DBUS_SESSION_BUS_ADDRESS > $HOME/.local/share/Xdbus
 echo 'export DBUS_SESSION_BUS_ADDRESS' >> $HOME/.local/share/Xdbus
-
-# Load zshrc
-[ -f "$ZDOTDIR/.zshrc" ] && . $ZDOTDIR/.zshrc
 
 if [ "$(tty)" = "/dev/tty1" ]; then
 	exec startx
