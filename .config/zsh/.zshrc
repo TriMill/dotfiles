@@ -41,7 +41,8 @@ setopt autocd
 setopt vi
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/tristanm/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_CUSTOM="$HOME/.config/zsh/custom"
 ZSH_THEME="customtheme"
 CASE_SENSITIVE="false"
 HYPHEN_INSENSITIVE="true"
