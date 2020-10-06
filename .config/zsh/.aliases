@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # Confirm before copy
 alias cp="cp -i"
@@ -24,8 +24,7 @@ alias docs='cd ~/documents'
 alias bin='cd ~/.local/bin'
 alias v-i3='nvim ~/.config/i3/config'
 alias v-i3b='nvim ~/.config/i3blocks/config'
-alias v-a='nvim ~/.aliases'
-alias v-brc='nvim ~/.bashrc'
+alias v-a='nvim $ZDOTDIR/.aliases'
 alias v-zrc='nvim $ZDOTDIR/.zshrc'
 alias v-nv='nvim ~/.config/nvim/init.vim'
 alias v-pr='nvim ~/.profile'
