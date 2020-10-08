@@ -112,10 +112,10 @@ bar {
 		background	#151617
 		separator	#4f5059
 		statusline	#bbbfbc
-		focused_workspace	#789ebf	#151617	#789ebf
-		active_workspace	#789ebf	#151617	#789ebf
-		inactive_workspace	#4f5059	#151617	#4f5059
-		urgent_workspace	#cc5c5c	#151617	#cc5c5c
+		focused_workspace	#789ebf	#789ebf	#151617
+		active_workspace	#4f5059	#4f5059	#151617
+		inactive_workspace	#151617	#151617	#4f5059
+		urgent_workspace	#151617	#151617	#cc5c5c
 	}
 	#i3bar_command "i3blocks | i3bar"
 }

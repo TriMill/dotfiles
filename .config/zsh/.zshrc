@@ -23,7 +23,7 @@ man() {
 	man "$@"
 }
 
-def zshplugintimes() {
+function zshplugintimes() {
 	for plugin ($plugins); do
 		timer=$(($(date +%s%N)/1000000))
 		if [ -f $ZSH_CUSTOM/plugins/$plugin/$plugin.plugin.zsh ]; then  
@@ -83,4 +83,5 @@ plugins=(git zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 todomsg=$(todo)
-[ "$todomsg" != "" ] && printf "TODO: \n$todomsg\n"
+[ "$todomsg" != "" ] && printf "TODO: \n%s\n" "$todomsg"
+return 0

@@ -1,9 +1,7 @@
 acpi
-acpid
 alacritty
 amidst-beta
 bc
-bind
 bleachbit
 bzip2
 calcurse
@@ -16,14 +14,11 @@ curl
 discord
 dmenu
 dosbox
-dosbox
 dunst
 escrotum
-feh
 ffmpeg
 figlet
 findutils
-firefox
 firefox
 gcolor2
 gimp
@@ -41,7 +36,6 @@ jq
 julia
 lutris
 man
-mesa
 minecraft-launcher-beta
 mlocate
 mpv
@@ -57,7 +51,6 @@ otf-inconsolata-dz
 p7zip
 pcmanfm
 picom
-processing
 pulseaudio-ctl
 python3
 qutebrowser
@@ -79,6 +72,7 @@ virtualbox
 w3m
 wget
 wine
+words
 xclip
 xdo
 xdotool
