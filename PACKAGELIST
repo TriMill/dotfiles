@@ -4,7 +4,6 @@ amidst-beta
 bc
 bleachbit
 bzip2
-calcurse
 chromium
 cmatrix
 code
@@ -79,6 +78,7 @@ xdotool
 xorg
 xorg-xinit
 xsel
+xtitle
 xwallpaper
 youtube-dl
 zathura

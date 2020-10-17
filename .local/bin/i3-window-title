@@ -2,15 +2,14 @@
 
 # REQUIRES:
 #	i3
-#	xdotool
+#	xtitle
 #	coreutils
 #	bash
 
 max_len=100
-i3-msg -t subscribe -m '["window","workspace"]' | while read line
+xtitle -s | while read -r name
 do 
-	name="$(xdotool getactivewindow getwindowname)"
-	[ $? = 1 ] && name="Desktop"
+	[ -z "$name" ] && name="Desktop"
 	[ "${#name}" -gt $max_len ] && name="$(echo "$name" | cut -c -$max_len)""..."
 	name="$(echo "$name" | iconv -c)"
 	echo "$name"

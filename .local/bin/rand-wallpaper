@@ -8,4 +8,4 @@
 #
 name=$(find ~/pictures/wallpapers -type f | shuf -n 1)
 xwallpaper --zoom $name
-echo "$name"
+echo "$name" | tee /tmp/wallpapername

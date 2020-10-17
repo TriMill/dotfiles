@@ -1,0 +1,37 @@
+#!/bin/bash
+IFS=''
+pause=0.04
+declare -A charpauses
+
+printmsg () {
+	m="$@"
+	for (( i=0; i<${#m}; i++ )); do
+		c="${m:$i:1}"
+		printf "%s" "$c"
+		if [ -n "$c" ] && [ -n "${charpauses["$c"]}" ]; then
+			sleep "${charpauses["$c"]}"
+		else
+			sleep $pause
+		fi
+	done
+	printf "\n"
+}
+
+message=''
+inmessage=0
+for arg in "$@"; do
+	[ $inmessage = 1 ] && message="$message $arg" && continue
+	[ "$arg" = "-m" ] && inmessage=1 && continue
+	[[ "$arg" == "-p"* ]] && pause="${arg:2}" && continue
+	[[ "$arg" == "--"* ]] && charpauses["${arg:2:1}"]="${arg:3}" && continue
+	1>&2 printf "Invalid argument '%s'.\n" "$arg" && exit 1
+done
+
+if [ $inmessage = 0 ]; then
+	while read -r line; do
+		printmsg "$line"
+	done
+else
+	printmsg "${message:1}"
+fi
+

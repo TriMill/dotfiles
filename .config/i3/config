@@ -27,8 +27,6 @@ client.background		#151617
 for_window [title="GIMP Startup"] move workspace $ws5
 for_window [class="Gimp"] move workspace $ws5
 for_window [class="Steam"] move workspace $ws6
-for_window [class="Calcurse"] move workspace $ws8
-for_window [title="Calcurse"] move workspace $ws8
 for_window [class="discord"] move workspace $ws9
 
 # Force SFML windows to float
@@ -36,7 +34,6 @@ for_window [class="sfml"] floating enable
 for_window [instance="sfml"] move position center
 
 # Startup programs
-exec --no-startup-id i3-msg 'workspace 8; exec "nice -n 10 $TERMINAL --class Calcurse --title Calcurse -e calcurse"; workspace 1'
 exec --no-startup-id i3-msg 'workspace 9; exec "nice -n 10 /usr/bin/discord"; workspace 1'
 exec --no-startup-id i3-msg 'workspace 1;'
 

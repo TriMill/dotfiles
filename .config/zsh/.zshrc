@@ -3,6 +3,8 @@
 # ~/.zshrc
 #
 
+ZSH_DISABLE_COMPFIX=true
+
 autoload -Uz compinit && compinit
 zmodload zsh/zprof
 
@@ -39,6 +41,7 @@ function zshplugintimes() {
 
 setopt autocd
 setopt vi
+tabs 4
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"

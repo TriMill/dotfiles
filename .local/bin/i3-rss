@@ -16,7 +16,7 @@ case "$BLOCK_BUTTON" in
 	1)	newsboat -x reload
 		notify-send "Reloaded RSS."
 		print_unread ;;
-	3)	($TERMINAL -e newsboat) & print_unread ;;
+	3)	($TERMINAL --title "Newsboat" -e newsboat) & print_unread ;;
 	*)	print_unread ;;
 esac
 
