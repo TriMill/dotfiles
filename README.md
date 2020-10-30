@@ -24,9 +24,10 @@ yay -S --needed --noconfirm $(cat PACKAGELIST)
 Note: some packages may not install correctly, 
 
 ### After installation:
+ - Branch or change the origin of the `dotfile` repo to make your own commits
  - Change the value in `.Xresources` depending on your screen DPI (set to 96 for a 1080p display)
  - Install `zsh-syntax-highlighting` using [these instructions](https://gist.github.com/dogrocker/1efb8fd9427779c827058f873b94df95)
  - Configure `newsboat` with your desired RSS feeds
+ - Put your wallpapers in `~/pictures/wallpapers`
  - Set `$LOCATION` to your town/city name to get the weather
  - Add, remove, and modify anything to make it yours, use the `dotfiles` alias to run git commands on the dotfile repo
- - Change the origin of the dotfile repo so you can commit your own changes

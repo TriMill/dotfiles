@@ -258,7 +258,7 @@ bindsym $mod+v sticky toggle
 bindsym $mod+b floating toggle
 # bindsym $mod+Shift+b
 
-# bindsym $mod+n
+bindsym $mod+n exec "autoclicker"
 # bindsym $mod+Shift+n
 
 bindsym $mod+m exec "redshift -O 4000"

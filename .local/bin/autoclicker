@@ -1,0 +1,12 @@
+#!/bin/sh
+if [ -f "/tmp/autoclickpid" ]; then
+	kill $(cat /tmp/autoclickpid)
+	rm /tmp/autoclickpid
+else
+	delay="$(echo -e "50\n100\n200\n500\n1000\n" | dmenu -p "Delay (ms):" -i -fn 'Inconsolata-11')"
+	[ $? -ne 0 ] && exit
+	mbutton="$(echo -e "1\n2\n3\n" | dmenu -p "Mouse button:" -i -fn 'Inconsolata-11')"
+	[ $? -ne 0 ] && exit
+	xdotool click --repeat 100000 --delay $delay $mbutton &
+	echo "$!" > /tmp/autoclickpid
+fi
