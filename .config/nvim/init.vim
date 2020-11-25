@@ -77,11 +77,15 @@ inoremap <Left>		<Nop>
 inoremap <Right>	<Nop>
 
 " Run file from shell
-nnoremap <leader>r 		:w<CR> :!%:p<CR>
+nnoremap <leader>r 		:w<CR>:!%:p<CR>
 
 " Make or make+execute
-nnoremap <leader>m 		:w<CR> :make<CR>
-nnoremap <leader>x 		:w<CR> :make%<CR> :!./%:r<CR>
+nnoremap <leader>m 		:w<CR>:!make<CR>
+nnoremap <leader>x 		:w<CR>:!make%<CR>:!./%:r<CR>
+
+" Cargo build or run
+nnoremap <leader>b		:w<CR>:!cargo build<CR>
+nnoremap <leader>r		:w<CR>:!cargo run<CR>
 
 " Map <leader><leader> to stop highlighting matches
 map <leader><leader> :noh<CR>

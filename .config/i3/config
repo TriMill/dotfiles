@@ -256,7 +256,7 @@ bindsym $mod+v sticky toggle
 # bindsym $mod+Shift+v
 
 bindsym $mod+b floating toggle
-# bindsym $mod+Shift+b
+bindsym $mod+Shift+b exec "killall picom && sleep 0.05; picom -b"
 
 bindsym $mod+n exec "autoclicker"
 # bindsym $mod+Shift+n
