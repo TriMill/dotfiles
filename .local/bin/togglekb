@@ -11,21 +11,28 @@ kbvariant="$(setxkbmap -query | awk '/variant/{print $2}')"
 if [[ "$1" == "ipa" ]]; then
 	if [[ "$kblayout" = "ipa" ]]; then
 		setxkbmap -layout us
+		~/.local/share/events/kbd_change.sh US
 	else
 		setxkbmap -layout ipa
+		~/.local/share/events/kbd_change.sh IPA
 	fi
 elif [[ "$1" == "intl" ]]; then
 	if [[ "$kblayout" = "us" ]] && [[ "$kbvariant" == "intl" ]]; then
 		setxkbmap -layout us
+		~/.local/share/events/kbd_change.sh US
 	else
 		setxkbmap -layout us -variant intl
+		~/.local/share/events/kbd_change.sh INTL
 	fi
 elif [[ "$1" == "special" ]]; then
 	if [[ "$kblayout" = "special" ]]; then
 		setxkbmap -layout us
+		~/.local/share/events/kbd_change.sh US
 	else
 		setxkbmap -layout special
+		~/.local/share/events/kbd_change.sh SPECIAL
 	fi
 else
 	setxkbmap -layout us
+	~/.local/share/events/kbd_change.sh US
 fi

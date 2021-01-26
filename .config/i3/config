@@ -28,18 +28,19 @@ for_window [title="GIMP Startup"] move workspace $ws5
 for_window [class="Gimp"] move workspace $ws5
 for_window [class="Steam"] move workspace $ws6
 for_window [class="discord"] move workspace $ws9
+for_window [class="discord_bot"] move workspace $ws8
 
 # Force SFML windows to float
 for_window [class="sfml"] floating enable
 for_window [instance="sfml"] move position center
 
 # Startup programs
-exec --no-startup-id i3-msg 'workspace 9; exec "nice -n 10 /usr/bin/discord"; workspace 1'
-exec --no-startup-id i3-msg 'workspace 1;'
+exec --no-startup-id "nice -n 10 /usr/bin/discord"
+# exec --no-startup-id "alacritty --class discord_bot,discord_bot -e ~/git/tribot/scripts/run_bot.sh"
 
 # Dropdown windows
-exec --no-startup-id "$TERMINAL --class dropdown_term" 
-exec --no-startup-id "$TERMINAL --class dropdown_calc -e python3 -i -c \"from math import *; import random, sys; print('Python', sys.version)\""
+exec --no-startup-id "export NOEXIT=true; $TERMINAL --class dropdown_term" 
+exec --no-startup-id "export COMPLEXPR_HISTORY=$HOME/.cache/complexpr_history; $TERMINAL --class dropdown_calc -e $HOME/.cargo/bin/complexpr-repl"
 
 # Set up window parameters
 for_window [instance="dropdown_*"] floating enable
@@ -73,6 +74,15 @@ set $ws9 "9"
 set $ws10 "10"
 
 workspace $ws1 output primary
+workspace $ws2 output primary
+workspace $ws3 output primary
+workspace $ws4 output primary
+workspace $ws5 output primary
+workspace $ws6 output primary
+workspace $ws7 output eDP1
+workspace $ws8 output eDP1
+workspace $ws9 output eDP1
+workspace $ws10 output eDP1
 
 #########################
 #  i3 system shortcuts  # 
@@ -123,18 +133,18 @@ bar {
 
 ## XF86 Keys ##
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle 
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 bindsym XF86MonBrightnessUp exec "xbacklight -inc 5"
 bindsym XF86MonBrightnessDown exec "xbacklight -dec 5"
 
 bindsym Print exec "screenshot screen"
 bindsym Shift+Print exec "screenshot sel"
-
-## $mod Shortcuts ##
+bindsym Ctrl+Print exec "screenshot screen copy"
+bindsym Ctrl+Shift+Print exec "screenshot sel copy"
 
 # Function keys ##
 
@@ -149,8 +159,8 @@ bindsym $mod+F5 reload
 bindsym $mod+F6 restart
 # bindsym $mod+F7
 # bindsym $mod+F8
-# bindsym $mod+F9
-# bindsym $mod+F10
+bindsym $mod+F9 exec "xbacklight -inc 5"
+bindsym $mod+F10 exec "xbacklight -dec 5"
 bindsym $mod+F11 exec dmenu_umount
 bindsym $mod+F12 exec dmenu_mount
 
@@ -229,6 +239,7 @@ bindsym $mod+Shift+g gaps inner current minus 5
 
 bindsym $mod+h focus left
 bindsym $mod+Shift+h move left 30 px
+bindsym $mod+Ctrl+h move workspace to output left
 
 bindsym $mod+j focus down
 bindsym $mod+Shift+j move down 30 px
@@ -238,6 +249,7 @@ bindsym $mod+Shift+k move up 30 px
 
 bindsym $mod+l focus right
 bindsym $mod+Shift+l move right 30 px
+bindsym $mod+Ctrl+l move workspace to output right
 
 ## Bottom row ##
 
@@ -261,8 +273,8 @@ bindsym $mod+Shift+b exec "killall picom && sleep 0.05; picom -b"
 bindsym $mod+n exec "autoclicker"
 # bindsym $mod+Shift+n
 
-bindsym $mod+m exec "redshift -O 4000"
-bindsym $mod+Shift+m exec "redshift -x" 
+bindsym $mod+m exec "redshift -O 4000; /home/trimill/.local/share/events/nightmode_change.sh ON"
+bindsym $mod+Shift+m exec "redshift -x; /home/trimill/.local/share/events/nightmode_change.sh OFF" 
 
 ## Other keys ##
 
@@ -275,5 +287,5 @@ bindsym $mod+Shift+Return exec $TERMINAL -e nvim
 bindsym $mod+space focus mode_toggle
 
 
-# Switch back to workspacd 1
+# Switch back to workspace 1
 exec --no-startup-id i3-msg 'workspace 1'

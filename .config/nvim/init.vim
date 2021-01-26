@@ -1,5 +1,15 @@
 let mapleader =","
 
+set nocompatible
+filetype off
+
+execute pathogen#infect()
+
+set rtp+=~/.config/nvim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'pest-parser/pest.vim'
+
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
 let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
@@ -7,7 +17,6 @@ set termguicolors
 
 colo termcolors
 
-execute pathogen#infect()
 
 syntax on
 filetype plugin indent on
@@ -26,6 +35,7 @@ set foldlevelstart=8
 set foldmethod=indent
 set laststatus=2
 set noshowmode
+set mouse=a
 
 let g:lightline = {
 	\ 'colorscheme': 'termcolors',

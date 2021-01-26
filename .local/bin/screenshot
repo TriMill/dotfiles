@@ -3,21 +3,32 @@
 timestamp="$(date +"%Y-%m-%dT%H.%M.%S")"
 
 if [[ "$1" == "screen" ]]; then
-	escrotum ~/screenshots/$timestamp.png
-	return="$?"
+	if [[ "$2" == "copy" ]]; then
+		escrotum -C
+		return="$?"
+	else
+		escrotum ~/screenshots/$timestamp.png
+		return="$?"
+	fi
 elif [[ "$1" == "sel" ]]; then
-	#sleep 0.2;
-	escrotum -s ~/screenshots/$timestamp.png
-	return="$?"
+	if [[ "$2" == "copy" ]]; then
+		escrotum -s -C
+		return="$?"
+	else
+		escrotum -s ~/screenshots/$timestamp.png
+		return="$?"
+	fi
 else
 	echo "Invalid parameter $1."
 	exit
 fi
 
-echo "$return"
-
 if [[ "$return" == "0" ]]; then
-	notify-send "Screenshot saved as $timestamp.png."
+	if [[ "$2" == "copy" ]]; then
+		notify-send "Screenshot copied to clipboard"
+	else
+		notify-send "Screenshot saved as $timestamp.png."
+	fi
 elif [[ "$return" == "4" ]]; then
 	notify-send "Screenshot canceled."
 else

@@ -3,12 +3,15 @@
 # ~/.zshrc
 #
 
+export PATH="$PATH:$HOME/.gem/ruby/2.7.0/bin/:$HOME/.cargo/bin"
+
 ZSH_DISABLE_COMPFIX=true
 
 autoload -Uz compinit && compinit
 zmodload zsh/zprof
 
 [ -r "$ZDOTDIR/.aliases" ] && source "$ZDOTDIR/.aliases"
+[ $NOEXIT ] && alias exit="echo Exiting is disabled"
 
 HISTSIZE=10000
 SAVEHIST=10000
