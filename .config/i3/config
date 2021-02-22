@@ -141,6 +141,11 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym XF86MonBrightnessUp exec "xbacklight -inc 5"
 bindsym XF86MonBrightnessDown exec "xbacklight -dec 5"
 
+bindsym XF86AudioPlay exec "playerctl play-pause"
+bindsym XF86AudioStop exec "playerctl stop"
+# bindsym XF86AudioPrev exec "playerctl previous"
+# bindsym XF86AudioNext exec "playerctl next"
+
 bindsym Print exec "screenshot screen"
 bindsym Shift+Print exec "screenshot sel"
 bindsym Ctrl+Print exec "screenshot screen copy"
